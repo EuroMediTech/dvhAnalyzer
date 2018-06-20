@@ -17,13 +17,13 @@ Visual Studioを利用するか、あるいはコマンドラインベースで 
 ここでは、Visual Studioなしでコンパイルする方法について紹介します。
 
 1. MSBuild.exeを探す  
-お使いのWindows (ここではEclipseが搭載されているコンピュータを想定しています) から、MSBuild.exeというプログラムを探します。  
+お使いのEclipse端末から、MSBuild.exeというプログラムを探します。  
 通常は、 `C:\Windows\Microsoft.NET\Framework64\v4.xxxx\MSBuild.exe` に存在しています。  
 (v4.xxxxはそれぞれ異なる可能性があります。)
 
 2. このリポジトリをダウンロードする  
 画面右上付近にある、Clone or Download という緑色のボタンからDownload ZIPなどを選択し、ローカル環境にダウンロードしてください。  
-ZIP形式でダウンロードした場合は適宜解凍してください。
+ZIP形式でダウンロードした場合は適宜解凍し、Eclipse端末へコピーしてください。
 
 3. コマンドプロンプトを立ち上げてコンパイルを実行する  
 手順2でZIP形式でダウンロードして解凍した場合、`dvhAnalyzer-master` というフォルダができているかと思います。  
