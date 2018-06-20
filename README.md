@@ -1,6 +1,6 @@
 # dvhAnalyzer
 
-Eclipse (Varian Medical Systems) で利用できるESAPIプラグインです。
+Eclipse (Varian Medical Systems) で利用できるDVH解析用のESAPIプラグインです。
 
 ## 使い方
 
