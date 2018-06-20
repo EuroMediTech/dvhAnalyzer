@@ -4,12 +4,22 @@ Eclipse (Varian Medical Systems) で利用できるESAPIプラグインです。
 
 ## 使い方
 
+下記操作にて、DVH情報を取得できます。  
+![操作方法](img/Movie.gif)
+
+### その他の機能
+一度作成したDVH項目はTemplateとして保存可能です。保存したTemplateを読み込む際は、Structure名のマッチング画面が開きます。  
+Export機能により、CSVファイルとして出力することができます。
+
+## コンパイル方法
+
 Visual Studioを利用するか、あるいはコマンドラインベースで `DVHAnalyzer.csproj` をコンパイルして使用します。  
 ここでは、Visual Studioなしでコンパイルする方法について紹介します。
 
 1. MSBuild.exeを探す  
 お使いのWindows (ここではEclipseが搭載されているコンピュータを想定しています) から、MSBuild.exeというプログラムを探します。  
-通常は、 `C:\Windows\Microsoft.NET\Framework64\v4.xxxx\MSBuild.exe` に存在しています。(v4.xxxxはそれぞれ異なる可能性があります。)
+通常は、 `C:\Windows\Microsoft.NET\Framework64\v4.xxxx\MSBuild.exe` に存在しています。  
+(v4.xxxxはそれぞれ異なる可能性があります。)
 
 2. このリポジトリをダウンロードする  
 画面右上付近にある、Clone or Download という緑色のボタンからDownload ZIPなどを選択し、ローカル環境にダウンロードしてください。  
