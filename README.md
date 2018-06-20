@@ -34,7 +34,7 @@ dvhAnalyzer-master\DVHAnalyzer> C:\Windows\Microsoft.NET\Framework64\v4.xxxx\MSB
 ~~~
 
 4. 生成ファイルをEclipse Scriptが実行可能なフォルダに移動する  
-上記コマンドがうまくいくと、`obj\x64\Release` というフォルダに `DVHAnalyzer.esapi.dll` というファイルが出来ているはずです。  
+上記コマンドがうまくいくと、`plugins` というフォルダに `DVHAnalyzer.esapi.dll` というファイルが出来ているはずです。  
 こちらをEclipseのExternal Beam PlanningのToolbarにある `Tools -> Scripts` で指定しているフォルダにコピーします。  
 
 5. Eclipseにて線量計算済みのプランを開いて実行する
