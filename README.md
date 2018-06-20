@@ -44,5 +44,5 @@ dvhAnalyzer-master\DVHAnalyzer> C:\Windows\Microsoft.NET\Framework64\v4.xxxx\MSB
 ## Eclipseのバージョンが異なる場合
 
 このプラグインは、Eclipse Ver. 13.7 向けに作成されています。
-Ver. 15.1の場合は、上記で使用している `DVHAnalyzer.csproj` を `DVHAnalyzer_v15.1.csproj` に読み替えてください。  
+Ver. 15以降の場合は、上記で使用している `DVHAnalyzer.csproj` を `DVHAnalyzer_v15.csproj` に読み替えてください。  
 その他のバージョンの場合や、コンパイルがうまくいかない場合は、emt-mediphys@euro-meditec.co.jp までお気軽にお問合せください。
