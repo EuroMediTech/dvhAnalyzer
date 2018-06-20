@@ -50,11 +50,19 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="VMS.TPS.Common.Model.API">
-      <HintPath>C:\Program Files (x86)\Varian\Vision\13.7\Bin64\VMS.TPS.Common.Model.API.dll</HintPath>
+      <HintPath Condition="Exists('C:\Program Files (x86)\Varian\Vision\13.7')">C:\Program Files (x86)\Varian\Vision\13.7\Bin64\VMS.TPS.Common.Model.API.dll</HintPath>
+      <HintPath Condition="Exists('C:\Program Files (x86)\Varian\Vision\13.0')">C:\Program Files (x86)\Varian\Vision\13.0\Bin64\VMS.TPS.Common.Model.API.dll</HintPath>
+      <HintPath Condition="Exists('C:\Program Files (x86)\Varian\Vision\13.5')">C:\Program Files (x86)\Varian\Vision\13.5\Bin64\VMS.TPS.Common.Model.API.dll</HintPath>
+      <HintPath Condition="Exists('C:\Program Files (x86)\Varian\Vision\13.6')">C:\Program Files (x86)\Varian\Vision\13.6\Bin64\VMS.TPS.Common.Model.API.dll</HintPath>
+      <HintPath Condition="Exists('C:\Program Files (x86)\Varian\Vision\11.0')">C:\Program Files (x86)\Varian\Vision\11.0\Bin64\VMS.TPS.Common.Model.API.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VMS.TPS.Common.Model.Types">
-      <HintPath>C:\Program Files (x86)\Varian\Vision\13.7\Bin64\VMS.TPS.Common.Model.Types.dll</HintPath>
+      <HintPath Condition="Exists('C:\Program Files (x86)\Varian\Vision\13.7')">C:\Program Files (x86)\Varian\Vision\13.7\Bin64\VMS.TPS.Common.Model.Types.dll</HintPath>
+      <HintPath Condition="Exists('C:\Program Files (x86)\Varian\Vision\13.0')">C:\Program Files (x86)\Varian\Vision\13.0\Bin64\VMS.TPS.Common.Model.Type.dll</HintPath>
+      <HintPath Condition="Exists('C:\Program Files (x86)\Varian\Vision\13.5')">C:\Program Files (x86)\Varian\Vision\13.5\Bin64\VMS.TPS.Common.Model.Types.dll</HintPath>
+      <HintPath Condition="Exists('C:\Program Files (x86)\Varian\Vision\13.6')">C:\Program Files (x86)\Varian\Vision\13.6\Bin64\VMS.TPS.Common.Model.Types.dll</HintPath>
+      <HintPath Condition="Exists('C:\Program Files (x86)\Varian\Vision\11.0')">C:\Program Files (x86)\Varian\Vision\11.0\Bin64\VMS.TPS.Common.Model.Type.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
