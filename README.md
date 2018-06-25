@@ -11,10 +11,10 @@ Eclipse (Varian Medical Systems) で利用できるDVH解析用のESAPIプラグ
 一度作成したDVH項目はTemplateとして保存可能です。保存したTemplateを読み込む際は、Structure名のマッチング画面が開きます。  
 Export機能により、CSVファイルとして出力することができます。
 
-## コンパイル方法
+## ビルド方法
 
-Visual Studioを利用するか、あるいはコマンドラインベースで `DVHAnalyzer.csproj` をコンパイルして使用します。  
-ここでは、Visual Studioなしでコンパイルする方法について紹介します。
+Visual Studioを利用するか、あるいはコマンドラインベースで `DVHAnalyzer.csproj` をビルドして使用します。  
+ここでは、Visual Studioなしでビルドする方法について紹介します。
 
 1. MSBuild.exeを探す  
 お使いのEclipse端末から、MSBuild.exeというプログラムを探します。  
@@ -25,12 +25,14 @@ Visual Studioを利用するか、あるいはコマンドラインベースで 
 画面右上付近にある、Clone or Download という緑色のボタンからDownload ZIPなどを選択し、ローカル環境にダウンロードしてください。  
 ZIP形式でダウンロードした場合は適宜解凍し、Eclipse端末へコピーしてください。
 
-3. コマンドプロンプトを立ち上げてコンパイルを実行する  
-手順2でZIP形式でダウンロードして解凍した場合、`dvhAnalyzer-master` というフォルダができているかと思います。  
-その中にあるDVHAnalyzerというフォルダ内でコマンドプロンプトを立ち上げ、下記コマンドでコンパイルを実行します。
+3. コマンドプロンプトを立ち上げてビルドを実行する  
+手順2でZIP形式でダウンロードして解凍した場合、`dvhAnalyzer-master` というフォルダができているかと思います。
+その中にあるDVHAnalyzerというフォルダ内でコマンドプロンプトを立ち上げ、下記コマンドでビルドを実行します。  
+DVHAnalyzerフォルダを開いた状態で、アドレスバーに `cmd` と入力するとその場所でコマンドプロンプトが立ち上がります。  
+![cmd](img/Movie2.gif)
 
 ~~~Batchfile
-dvhAnalyzer-master\DVHAnalyzer> C:\Windows\Microsoft.NET\Framework64\v4.xxxx\MSBuild.exe DVHAnalyzer.csproj /p:Configuration=Release
+C:\...\dvhAnalyzer-master\DVHAnalyzer> C:\Windows\Microsoft.NET\Framework64\v4.xxxx\MSBuild.exe DVHAnalyzer.csproj /p:Configuration=Release
 ~~~
 
 4. 生成ファイルをEclipse Scriptが実行可能なフォルダに移動する  
@@ -43,6 +45,7 @@ dvhAnalyzer-master\DVHAnalyzer> C:\Windows\Microsoft.NET\Framework64\v4.xxxx\MSB
 
 ## Eclipseのバージョンが異なる場合
 
-このプラグインは、Eclipse Ver. 13.7 向けに作成されています。
-Ver. 15以降の場合は、上記で使用している `DVHAnalyzer.csproj` を `DVHAnalyzer_v15.csproj` に読み替えてください。  
-その他のバージョンの場合や、コンパイルがうまくいかない場合は、emt-mediphys@euro-meditec.co.jp までお気軽にお問合せください。
+このプラグインは、Eclipse Ver. 13.7 で作成されています。
+Ver. 11.0 および Ver. 13.7 でビルドおよび動作確認をしています。
+Ver. 15以降の場合は、上記で使用している `DVHAnalyzer.csproj` を `DVHAnalyzer_v15.csproj` に読み替えてビルドを実行してください。  
+その他のバージョンの場合や、ビルドがうまくいかない場合は、emt-mediphys@euro-meditec.co.jp までお気軽にお問合せください。

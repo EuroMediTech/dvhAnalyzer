@@ -488,7 +488,7 @@ namespace DVHAnalyzer
 
     private void button_open_Click(object sender, EventArgs e)
     {
-      openFileDialog1.InitialDirectory = @"C:\";
+      // openFileDialog1.InitialDirectory = @"C:\";
       openFileDialog1.Filter = "CSV file|*.csv";
       if (openFileDialog1.ShowDialog() == DialogResult.OK)
       {
@@ -498,7 +498,7 @@ namespace DVHAnalyzer
 
     private void button_save_Click(object sender, EventArgs e)
     {
-      saveFileDialog1.InitialDirectory = @"C:\";
+      // saveFileDialog1.InitialDirectory = @"C:\";
       saveFileDialog1.Filter = "CSV file|*.csv";
       if(saveFileDialog1.ShowDialog() == DialogResult.OK)
       {
@@ -508,7 +508,7 @@ namespace DVHAnalyzer
 
     private void button_export_Click(object sender, EventArgs e)
     {
-      saveFileDialog2.InitialDirectory = @"C:\";
+      // saveFileDialog2.InitialDirectory = @"C:\";
       saveFileDialog2.Filter = "CSV file|*.csv";
       String file = context.Patient.Id + "_" + planSetup.Id;
       saveFileDialog2.FileName = file;
