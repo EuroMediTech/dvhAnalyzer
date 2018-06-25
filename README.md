@@ -29,11 +29,12 @@ ZIP形式でダウンロードした場合は適宜解凍し、Eclipse端末へ�
 手順2でZIP形式でダウンロードして解凍した場合、`dvhAnalyzer-master` というフォルダができているかと思います。
 その中にあるDVHAnalyzerというフォルダ内でコマンドプロンプトを立ち上げ、下記コマンドでビルドを実行します。  
 DVHAnalyzerフォルダを開いた状態で、アドレスバーに `cmd` と入力するとその場所でコマンドプロンプトが立ち上がります。  
-![cmd](img/Movie2.gif)
 
 ~~~Batchfile
 C:\...\dvhAnalyzer-master\DVHAnalyzer> C:\Windows\Microsoft.NET\Framework64\v4.xxxx\MSBuild.exe DVHAnalyzer.csproj /p:Configuration=Release
 ~~~
+
+![cmd](img/Movie2.gif)
 
 4. 生成ファイルをEclipse Scriptが実行可能なフォルダに移動する  
 上記コマンドがうまくいくと、`plugins` というフォルダに `DVHAnalyzer.esapi.dll` というファイルが出来ているはずです。  
