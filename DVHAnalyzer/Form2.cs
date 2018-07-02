@@ -30,7 +30,7 @@ namespace DVHAnalyzer
 
       foreach (Structure structure in ss.Structures)
       {
-        if (!structure.IsEmpty)
+        if (!structure.IsEmpty && structure.DicomType != "SUPPORT")
           f.Column_plan.Items.Add(structure.Id);
       }
 

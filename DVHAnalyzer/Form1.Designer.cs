@@ -35,6 +35,14 @@
       this.button_calc = new System.Windows.Forms.Button();
       this.splitContainer3 = new System.Windows.Forms.SplitContainer();
       this.dataGridView1 = new System.Windows.Forms.DataGridView();
+      this.Column_structure = new System.Windows.Forms.DataGridViewComboBoxColumn();
+      this.Column_dv = new System.Windows.Forms.DataGridViewComboBoxColumn();
+      this.Column_dvvalue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.Column_dvunit = new System.Windows.Forms.DataGridViewComboBoxColumn();
+      this.Column_unit = new System.Windows.Forms.DataGridViewComboBoxColumn();
+      this.Column_space = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.Column_result = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.Column_textunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.label_mu = new System.Windows.Forms.Label();
       this.label1 = new System.Windows.Forms.Label();
       this.button_close = new System.Windows.Forms.Button();
@@ -44,14 +52,6 @@
       this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
       this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
       this.saveFileDialog2 = new System.Windows.Forms.SaveFileDialog();
-      this.Column_structure = new System.Windows.Forms.DataGridViewComboBoxColumn();
-      this.Column_dv = new System.Windows.Forms.DataGridViewComboBoxColumn();
-      this.Column_dvvalue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.Column_dvunit = new System.Windows.Forms.DataGridViewComboBoxColumn();
-      this.Column_unit = new System.Windows.Forms.DataGridViewComboBoxColumn();
-      this.Column_space = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.Column_result = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.Column_textunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
       this.splitContainer1.Panel1.SuspendLayout();
       this.splitContainer1.Panel2.SuspendLayout();
@@ -86,7 +86,7 @@
       this.splitContainer1.Panel2.Controls.Add(this.button_save);
       this.splitContainer1.Panel2.Controls.Add(this.button_open);
       this.splitContainer1.Size = new System.Drawing.Size(741, 614);
-      this.splitContainer1.SplitterDistance = 524;
+      this.splitContainer1.SplitterDistance = 502;
       this.splitContainer1.SplitterWidth = 6;
       this.splitContainer1.TabIndex = 0;
       // 
@@ -106,8 +106,8 @@
       // splitContainer2.Panel2
       // 
       this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-      this.splitContainer2.Size = new System.Drawing.Size(741, 524);
-      this.splitContainer2.SplitterDistance = 59;
+      this.splitContainer2.Size = new System.Drawing.Size(741, 502);
+      this.splitContainer2.SplitterDistance = 53;
       this.splitContainer2.TabIndex = 1;
       // 
       // button_delete
@@ -155,8 +155,8 @@
       // 
       this.splitContainer3.Panel2.Controls.Add(this.label_mu);
       this.splitContainer3.Panel2.Controls.Add(this.label1);
-      this.splitContainer3.Size = new System.Drawing.Size(741, 461);
-      this.splitContainer3.SplitterDistance = 430;
+      this.splitContainer3.Size = new System.Drawing.Size(741, 445);
+      this.splitContainer3.SplitterDistance = 397;
       this.splitContainer3.TabIndex = 2;
       // 
       // dataGridView1
@@ -182,68 +182,10 @@
       this.dataGridView1.RowHeadersVisible = false;
       this.dataGridView1.RowTemplate.Height = 30;
       this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-      this.dataGridView1.Size = new System.Drawing.Size(741, 430);
+      this.dataGridView1.Size = new System.Drawing.Size(741, 397);
       this.dataGridView1.TabIndex = 0;
       this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
       this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
-      // 
-      // label_mu
-      // 
-      this.label_mu.AutoSize = true;
-      this.label_mu.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label_mu.Location = new System.Drawing.Point(647, 0);
-      this.label_mu.Name = "label_mu";
-      this.label_mu.Size = new System.Drawing.Size(0, 21);
-      this.label_mu.TabIndex = 2;
-      // 
-      // label1
-      // 
-      this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(568, 0);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(73, 21);
-      this.label1.TabIndex = 1;
-      this.label1.Text = "Total MU";
-      // 
-      // button_close
-      // 
-      this.button_close.Location = new System.Drawing.Point(617, 42);
-      this.button_close.Name = "button_close";
-      this.button_close.Size = new System.Drawing.Size(112, 35);
-      this.button_close.TabIndex = 3;
-      this.button_close.Text = "Close";
-      this.button_close.UseVisualStyleBackColor = true;
-      this.button_close.Click += new System.EventHandler(this.button_close_Click);
-      // 
-      // button_export
-      // 
-      this.button_export.Location = new System.Drawing.Point(617, 0);
-      this.button_export.Name = "button_export";
-      this.button_export.Size = new System.Drawing.Size(112, 36);
-      this.button_export.TabIndex = 2;
-      this.button_export.Text = "Export";
-      this.button_export.UseVisualStyleBackColor = true;
-      this.button_export.Click += new System.EventHandler(this.button_export_Click);
-      // 
-      // button_save
-      // 
-      this.button_save.Location = new System.Drawing.Point(461, 0);
-      this.button_save.Name = "button_save";
-      this.button_save.Size = new System.Drawing.Size(141, 36);
-      this.button_save.TabIndex = 1;
-      this.button_save.Text = "Save as Template";
-      this.button_save.UseVisualStyleBackColor = true;
-      this.button_save.Click += new System.EventHandler(this.button_save_Click);
-      // 
-      // button_open
-      // 
-      this.button_open.Location = new System.Drawing.Point(314, 0);
-      this.button_open.Name = "button_open";
-      this.button_open.Size = new System.Drawing.Size(141, 36);
-      this.button_open.TabIndex = 0;
-      this.button_open.Text = "Open Template";
-      this.button_open.UseVisualStyleBackColor = true;
-      this.button_open.Click += new System.EventHandler(this.button_open_Click);
       // 
       // Column_structure
       // 
@@ -315,6 +257,64 @@
       this.Column_textunit.Name = "Column_textunit";
       this.Column_textunit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
       // 
+      // label_mu
+      // 
+      this.label_mu.AutoSize = true;
+      this.label_mu.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label_mu.Location = new System.Drawing.Point(647, 0);
+      this.label_mu.Name = "label_mu";
+      this.label_mu.Size = new System.Drawing.Size(0, 21);
+      this.label_mu.TabIndex = 2;
+      // 
+      // label1
+      // 
+      this.label1.AutoSize = true;
+      this.label1.Location = new System.Drawing.Point(568, 0);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(71, 21);
+      this.label1.TabIndex = 1;
+      this.label1.Text = "Total MU";
+      // 
+      // button_close
+      // 
+      this.button_close.Location = new System.Drawing.Point(617, 42);
+      this.button_close.Name = "button_close";
+      this.button_close.Size = new System.Drawing.Size(112, 35);
+      this.button_close.TabIndex = 3;
+      this.button_close.Text = "Close";
+      this.button_close.UseVisualStyleBackColor = true;
+      this.button_close.Click += new System.EventHandler(this.button_close_Click);
+      // 
+      // button_export
+      // 
+      this.button_export.Location = new System.Drawing.Point(617, 0);
+      this.button_export.Name = "button_export";
+      this.button_export.Size = new System.Drawing.Size(112, 36);
+      this.button_export.TabIndex = 2;
+      this.button_export.Text = "Export";
+      this.button_export.UseVisualStyleBackColor = true;
+      this.button_export.Click += new System.EventHandler(this.button_export_Click);
+      // 
+      // button_save
+      // 
+      this.button_save.Location = new System.Drawing.Point(461, 0);
+      this.button_save.Name = "button_save";
+      this.button_save.Size = new System.Drawing.Size(141, 36);
+      this.button_save.TabIndex = 1;
+      this.button_save.Text = "Save as Template";
+      this.button_save.UseVisualStyleBackColor = true;
+      this.button_save.Click += new System.EventHandler(this.button_save_Click);
+      // 
+      // button_open
+      // 
+      this.button_open.Location = new System.Drawing.Point(314, 0);
+      this.button_open.Name = "button_open";
+      this.button_open.Size = new System.Drawing.Size(141, 36);
+      this.button_open.TabIndex = 0;
+      this.button_open.Text = "Open Template";
+      this.button_open.UseVisualStyleBackColor = true;
+      this.button_open.Click += new System.EventHandler(this.button_open_Click);
+      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -322,10 +322,12 @@
       this.ClientSize = new System.Drawing.Size(741, 614);
       this.Controls.Add(this.splitContainer1);
       this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.KeyPreview = true;
       this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.Name = "Form1";
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
       this.Text = "DVH Analyzer";
+      this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
       this.splitContainer1.Panel1.ResumeLayout(false);
       this.splitContainer1.Panel2.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
