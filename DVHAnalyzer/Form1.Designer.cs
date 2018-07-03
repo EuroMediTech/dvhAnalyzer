@@ -33,6 +33,7 @@
       this.splitContainer2 = new System.Windows.Forms.SplitContainer();
       this.toolStrip1 = new System.Windows.Forms.ToolStrip();
       this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+      this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
       this.pictureBox1 = new System.Windows.Forms.PictureBox();
       this.label7 = new System.Windows.Forms.Label();
       this.label6 = new System.Windows.Forms.Label();
@@ -62,7 +63,6 @@
       this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
       this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
       this.saveFileDialog2 = new System.Windows.Forms.SaveFileDialog();
-      this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
       this.splitContainer1.Panel1.SuspendLayout();
       this.splitContainer1.Panel2.SuspendLayout();
@@ -95,6 +95,7 @@
       // splitContainer1.Panel2
       // 
       this.splitContainer1.Panel2.Controls.Add(this.button_close);
+      this.splitContainer1.Panel2.Controls.Add(this.pictureBox1);
       this.splitContainer1.Panel2.Controls.Add(this.button_export);
       this.splitContainer1.Panel2.Controls.Add(this.button_save);
       this.splitContainer1.Panel2.Controls.Add(this.button_open);
@@ -113,7 +114,6 @@
       // splitContainer2.Panel1
       // 
       this.splitContainer2.Panel1.Controls.Add(this.toolStrip1);
-      this.splitContainer2.Panel1.Controls.Add(this.pictureBox1);
       this.splitContainer2.Panel1.Controls.Add(this.label7);
       this.splitContainer2.Panel1.Controls.Add(this.label6);
       this.splitContainer2.Panel1.Controls.Add(this.label5);
@@ -154,12 +154,23 @@
       this.toolStripButton1.Text = "Settings";
       this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
       // 
+      // toolStripButton2
+      // 
+      this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+      this.toolStripButton2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+      this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolStripButton2.Name = "toolStripButton2";
+      this.toolStripButton2.Size = new System.Drawing.Size(45, 24);
+      this.toolStripButton2.Text = "Help";
+      this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+      // 
       // pictureBox1
       // 
       this.pictureBox1.Image = global::DVHAnalyzer.Properties.Resources.EMTlogo;
-      this.pictureBox1.Location = new System.Drawing.Point(516, 29);
+      this.pictureBox1.Location = new System.Drawing.Point(12, 38);
       this.pictureBox1.Name = "pictureBox1";
-      this.pictureBox1.Size = new System.Drawing.Size(268, 49);
+      this.pictureBox1.Size = new System.Drawing.Size(268, 42);
       this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
       this.pictureBox1.TabIndex = 4;
       this.pictureBox1.TabStop = false;
@@ -167,7 +178,7 @@
       // label7
       // 
       this.label7.AutoSize = true;
-      this.label7.Location = new System.Drawing.Point(145, 91);
+      this.label7.Location = new System.Drawing.Point(145, 94);
       this.label7.Name = "label7";
       this.label7.Size = new System.Drawing.Size(0, 21);
       this.label7.TabIndex = 10;
@@ -175,7 +186,7 @@
       // label6
       // 
       this.label6.AutoSize = true;
-      this.label6.Location = new System.Drawing.Point(145, 66);
+      this.label6.Location = new System.Drawing.Point(145, 69);
       this.label6.Name = "label6";
       this.label6.Size = new System.Drawing.Size(0, 21);
       this.label6.TabIndex = 9;
@@ -183,7 +194,7 @@
       // label5
       // 
       this.label5.AutoSize = true;
-      this.label5.Location = new System.Drawing.Point(145, 41);
+      this.label5.Location = new System.Drawing.Point(145, 44);
       this.label5.Name = "label5";
       this.label5.Size = new System.Drawing.Size(0, 21);
       this.label5.TabIndex = 8;
@@ -192,7 +203,7 @@
       // 
       this.label4.AutoSize = true;
       this.label4.ForeColor = System.Drawing.SystemColors.GrayText;
-      this.label4.Location = new System.Drawing.Point(12, 91);
+      this.label4.Location = new System.Drawing.Point(12, 94);
       this.label4.Name = "label4";
       this.label4.Size = new System.Drawing.Size(59, 21);
       this.label4.TabIndex = 7;
@@ -202,7 +213,7 @@
       // 
       this.label3.AutoSize = true;
       this.label3.ForeColor = System.Drawing.SystemColors.GrayText;
-      this.label3.Location = new System.Drawing.Point(12, 66);
+      this.label3.Location = new System.Drawing.Point(12, 69);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(114, 21);
       this.label3.TabIndex = 6;
@@ -212,7 +223,7 @@
       // 
       this.label2.AutoSize = true;
       this.label2.ForeColor = System.Drawing.SystemColors.GrayText;
-      this.label2.Location = new System.Drawing.Point(12, 41);
+      this.label2.Location = new System.Drawing.Point(12, 44);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(76, 21);
       this.label2.TabIndex = 5;
@@ -220,7 +231,7 @@
       // 
       // button_delete
       // 
-      this.button_delete.Location = new System.Drawing.Point(523, 81);
+      this.button_delete.Location = new System.Drawing.Point(523, 82);
       this.button_delete.Name = "button_delete";
       this.button_delete.Size = new System.Drawing.Size(115, 36);
       this.button_delete.TabIndex = 4;
@@ -230,7 +241,7 @@
       // 
       // button_add
       // 
-      this.button_add.Location = new System.Drawing.Point(396, 81);
+      this.button_add.Location = new System.Drawing.Point(396, 82);
       this.button_add.Name = "button_add";
       this.button_add.Size = new System.Drawing.Size(121, 36);
       this.button_add.TabIndex = 3;
@@ -240,7 +251,7 @@
       // 
       // button_calc
       // 
-      this.button_calc.Location = new System.Drawing.Point(644, 81);
+      this.button_calc.Location = new System.Drawing.Point(644, 82);
       this.button_calc.Name = "button_calc";
       this.button_calc.Size = new System.Drawing.Size(141, 36);
       this.button_calc.TabIndex = 2;
@@ -368,18 +379,19 @@
       // label_mu
       // 
       this.label_mu.AutoSize = true;
-      this.label_mu.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label_mu.Location = new System.Drawing.Point(647, 6);
+      this.label_mu.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
+      this.label_mu.Location = new System.Drawing.Point(705, 6);
       this.label_mu.Name = "label_mu";
-      this.label_mu.Size = new System.Drawing.Size(0, 21);
+      this.label_mu.Size = new System.Drawing.Size(0, 25);
       this.label_mu.TabIndex = 2;
       // 
       // label1
       // 
       this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(568, 6);
+      this.label1.Font = new System.Drawing.Font("Segoe UI", 13F);
+      this.label1.Location = new System.Drawing.Point(617, 6);
       this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(71, 21);
+      this.label1.Size = new System.Drawing.Size(82, 25);
       this.label1.TabIndex = 1;
       this.label1.Text = "Total MU";
       // 
@@ -422,17 +434,6 @@
       this.button_open.Text = "Open Template";
       this.button_open.UseVisualStyleBackColor = true;
       this.button_open.Click += new System.EventHandler(this.button_open_Click);
-      // 
-      // toolStripButton2
-      // 
-      this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-      this.toolStripButton2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-      this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolStripButton2.Name = "toolStripButton2";
-      this.toolStripButton2.Size = new System.Drawing.Size(45, 24);
-      this.toolStripButton2.Text = "Help";
-      this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
       // 
       // Form1
       // 

@@ -209,7 +209,7 @@ namespace DVHAnalyzer
           if (!beam.IsSetupField)
             MU += (int) Math.Round(beam.Meterset.Value * 10);
         }
-        label_mu.Text = (MU / 10).ToString("F1");
+        label_mu.Text = (1.0 * MU / 10).ToString("F1");
       }
 
       DataGridViewCellCollection row_cells = row.Cells;
@@ -497,9 +497,15 @@ namespace DVHAnalyzer
 
             for (int j = 0; j < dataGridView1.Columns.Count; j++)
             {
-              if (j != 4 && j != 5)
+              if (j < 1 || j > 5)
               {
                 strList.Add(Convert.ToString(dataGridView1[j, i].Value));
+              }
+              else if (j == 1)
+              {
+                String parameter = String.Format("{0}{1}{2}",
+                 dataGridView1[j, i].Value, dataGridView1[j + 1, i].Value, dataGridView1[j + 2, i].Value);
+                strList.Add(parameter);
               }
             }
 
@@ -514,8 +520,6 @@ namespace DVHAnalyzer
           {
             List<String> strList = new List<String>();
             strList.Add("Total MU");
-            strList.Add("");
-            strList.Add("");
             strList.Add("");
             strList.Add(label_mu.Text);
             strList.Add("");
