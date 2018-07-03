@@ -19,6 +19,8 @@ namespace DVHAnalyzer
     PlanSetup planSetup { get; set; }
     StructureSet ss { get; set; }
 
+    string setting = String.Format(@"{0}\EMT\settings.ini", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
+
     public Form1(ScriptContext _context)
     {
       InitializeComponent();
@@ -27,7 +29,7 @@ namespace DVHAnalyzer
       ss = planSetup.StructureSet;
 
       label5.Text = context.Patient.Id;
-      label6.Text = String.Format("{0} {1}",context.Patient.LastName, context.Patient.FirstName);
+      label6.Text = String.Format("{0} {1}", context.Patient.LastName, context.Patient.FirstName);
       label7.Text = planSetup.Id;
 
       foreach (Structure structure in ss.Structures)
@@ -166,7 +168,7 @@ namespace DVHAnalyzer
 
         if (e.ColumnIndex == Column_dvvalue.Index)
         {
-          if (Convert.ToString(dataGridView1[e.ColumnIndex, e.RowIndex].Value) != "") 
+          if (Convert.ToString(dataGridView1[e.ColumnIndex, e.RowIndex].Value) != "")
           {
             float dvvalue = 1;
 
@@ -205,9 +207,9 @@ namespace DVHAnalyzer
         foreach (var beam in beams)
         {
           if (!beam.IsSetupField)
-            MU += (int) Math.Round(beam.Meterset.Value*10);
+            MU += (int) Math.Round(beam.Meterset.Value * 10);
         }
-        label_mu.Text = (MU/10).ToString("F1");
+        label_mu.Text = (MU / 10).ToString("F1");
       }
 
       DataGridViewCellCollection row_cells = row.Cells;
@@ -541,6 +543,23 @@ namespace DVHAnalyzer
 
     private void button_open_Click(object sender, EventArgs e)
     {
+      if (File.Exists(setting))
+      {
+        using(StreamReader sr = new StreamReader(setting, Encoding.GetEncoding("shift-jis")))
+        {
+          while (sr.EndOfStream == false)
+          {
+            string[] line = sr.ReadLine().Split(' ');
+            if (line[0] == "Template")
+            {
+              if (Directory.Exists(line[1]))
+              {
+                openFileDialog1.InitialDirectory = line[1];
+              }
+            }
+          }
+        }
+      }
       // openFileDialog1.InitialDirectory = @"C:\";
       openFileDialog1.Filter = "CSV file|*.csv";
       if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -551,7 +570,24 @@ namespace DVHAnalyzer
 
     private void button_save_Click(object sender, EventArgs e)
     {
-      // saveFileDialog1.InitialDirectory = @"C:\";
+      if (File.Exists(setting))
+      {
+        using(StreamReader sr = new StreamReader(setting, Encoding.GetEncoding("shift-jis")))
+        {
+          while (sr.EndOfStream == false)
+          {
+            string[] line = sr.ReadLine().Split(' ');
+            if (line[0] == "Template")
+            {
+              if (Directory.Exists(line[1]))
+              {
+                saveFileDialog1.InitialDirectory = line[1];
+              }
+            }
+          }
+        }
+      }
+
       saveFileDialog1.Filter = "CSV file|*.csv";
       if (saveFileDialog1.ShowDialog() == DialogResult.OK)
       {
@@ -561,9 +597,31 @@ namespace DVHAnalyzer
 
     private void button_export_Click(object sender, EventArgs e)
     {
+      if (File.Exists(setting))
+      {
+        using(StreamReader sr = new StreamReader(setting, Encoding.GetEncoding("shift-jis")))
+        {
+          while (sr.EndOfStream == false)
+          {
+            string[] line = sr.ReadLine().Split(' ');
+            if (line[0] == "Export")
+            {
+              if (Directory.Exists(line[1]))
+              {
+                saveFileDialog2.InitialDirectory = line[1];
+              }
+            }
+          }
+        }
+      }
       // saveFileDialog2.InitialDirectory = @"C:\";
       saveFileDialog2.Filter = "CSV file|*.csv";
-      String file = context.Patient.Id + "_" + planSetup.Id;
+      String pname = context.Patient.LastName;
+      if (context.Patient.FirstName != "")
+      {
+        pname = pname + "_" + context.Patient.FirstName;
+      }
+      String file = context.Patient.Id + "_" + pname + "_" + planSetup.Id; // + DateTime.Now.ToString("yyyyMMddHHmm");
       saveFileDialog2.FileName = file;
       if (saveFileDialog2.ShowDialog() == DialogResult.OK)
       {
@@ -593,6 +651,18 @@ namespace DVHAnalyzer
         button_delete.Focus();
         button_delete.PerformClick();
       }
+    }
+
+    private void toolStripButton1_Click(object sender, EventArgs e)
+    {
+      Form3 form3 = new Form3();
+      form3.ShowDialog();
+    }
+
+    private void toolStripButton2_Click(object sender, EventArgs e)
+    {
+      Form4 form4 = new Form4();
+      form4.ShowDialog();
     }
   }
 }
