@@ -26,6 +26,10 @@ namespace DVHAnalyzer
       planSetup = context.PlanSetup;
       ss = planSetup.StructureSet;
 
+      label5.Text = context.Patient.Id;
+      label6.Text = String.Format("{0} {1}",context.Patient.LastName, context.Patient.FirstName);
+      label7.Text = planSetup.Id;
+
       foreach (Structure structure in ss.Structures)
       {
         if (!structure.IsEmpty && structure.DicomType != "SUPPORT")
@@ -201,9 +205,9 @@ namespace DVHAnalyzer
         foreach (var beam in beams)
         {
           if (!beam.IsSetupField)
-            MU += (int) Math.Round(beam.Meterset.Value);
+            MU += (int) Math.Round(beam.Meterset.Value*10);
         }
-        label_mu.Text = MU.ToString();
+        label_mu.Text = (MU/10).ToString("F1");
       }
 
       DataGridViewCellCollection row_cells = row.Cells;
@@ -467,7 +471,8 @@ namespace DVHAnalyzer
 
     private void SaveResults(String filename)
     {
-      using(StreamWriter writer = new StreamWriter(filename))
+      Encoding sjis = Encoding.GetEncoding("Shift-JIS");
+      using(StreamWriter writer = new StreamWriter(filename, false, sjis))
       {
         int rowCount = dataGridView1.Rows.Count;
 
