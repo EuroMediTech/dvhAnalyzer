@@ -18,8 +18,8 @@ Visual Studioを利用するか、あるいはコマンドラインベースで 
 
 1. MSBuild.exeを探す  
 お使いのEclipse端末から、MSBuild.exeというプログラムを探します。  
-通常は、 `C:\Windows\Microsoft.NET\Framework64\v4.xxxx\MSBuild.exe` に存在しています。  
-(v4.xxxxはそれぞれ異なる可能性があります。)
+通常は、 `C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe` に存在しています。  
+(v4.0.30319はそれぞれ異なる可能性があります。)
 
 2. このリポジトリをダウンロードする  
 画面右上付近にある、Clone or Download という緑色のボタンからDownload ZIPなどを選択し、ローカル環境にダウンロードしてください。  
@@ -31,7 +31,13 @@ ZIP形式でダウンロードした場合は適宜解凍し、Eclipse端末へ�
 DVHAnalyzerフォルダを開いた状態で、アドレスバーに `cmd` と入力するとその場所でコマンドプロンプトが立ち上がります。  
 
 ~~~Batchfile
-C:\...\dvhAnalyzer-master\DVHAnalyzer> C:\Windows\Microsoft.NET\Framework64\v4.xxxx\MSBuild.exe DVHAnalyzer.csproj /p:Configuration=Release
+C:\...\dvhAnalyzer-master\DVHAnalyzer> C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe DVHAnalyzer.csproj /p:Configuration=Release
+~~~
+
+Eclipse Ver. 15以降の場合
+
+~~~Batchfile
+C:\...\dvhAnalyzer-master\DVHAnalyzer> C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe DVHAnalyzer_v15.csproj /p:Configuration=Release
 ~~~
 
 ![cmd](img/Movie2.gif)
@@ -50,3 +56,7 @@ C:\...\dvhAnalyzer-master\DVHAnalyzer> C:\Windows\Microsoft.NET\Framework64\v4.x
 Ver11.0, Ver. 13.6 および Ver. 13.7 でビルドおよび動作確認をしています。
 Ver. 15以降の場合は、上記で使用している `DVHAnalyzer.csproj` を `DVHAnalyzer_v15.csproj` に読み替えてビルドを実行してください。  
 その他のバージョンの場合や、ビルドがうまくいかない場合は、emt-mediphys@euro-meditec.co.jp までお気軽にお問合せください。
+
+## Special Thanks
+
+遠山尚紀さん、深田恭平さん
