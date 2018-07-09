@@ -251,6 +251,8 @@ namespace DVHAnalyzer
 
           if (s.Id == struct_name)
           {
+            var volume = s.Volume;
+
             if (!isUnitDetermined)
             {
               DoseValue doseValue = planSetup.GetDVHCumulativeData(s, doseAbs, 0, 0.1).MaxDose;
@@ -300,7 +302,7 @@ namespace DVHAnalyzer
                 value = doseValue.Dose.ToString("F2");
               }
             }
-            else if (dv == "D")
+            else if (dv == "D" || dv == "DC")
             {
               double dx = double.Parse(dv_value);
               if (dv_unit == "" || dv_value == "")
@@ -313,13 +315,29 @@ namespace DVHAnalyzer
                 {
                   if (unit == "Gy")
                   {
-                    DoseValue doseValue = planSetup.GetDoseAtVolume(s, dx, 0, doseAbs);
-                    value = doseUnit == "cGy" ? (doseValue.Dose / 100.0).ToString("F2") : doseValue.Dose.ToString("F2");
+                    if (dv == "D")
+                    {
+                      DoseValue doseValue = planSetup.GetDoseAtVolume(s, dx, 0, doseAbs);
+                      value = doseUnit == "cGy" ? (doseValue.Dose / 100.0).ToString("F2") : doseValue.Dose.ToString("F2");
+                    }
+                    else if (dv == "DC")
+                    {
+                      DoseValue doseValue = planSetup.GetDoseAtVolume(s, 100 - dx, 0, doseAbs);
+                      value = doseUnit == "cGy" ? (doseValue.Dose / 100.0).ToString("F2") : doseValue.Dose.ToString("F2");
+                    }
                   }
                   else
                   {
-                    DoseValue doseValue = planSetup.GetDoseAtVolume(s, dx, 0, 0);
-                    value = doseValue.Dose.ToString("F2");
+                    if (dv == "D")
+                    {
+                      DoseValue doseValue = planSetup.GetDoseAtVolume(s, dx, 0, 0);
+                      value = doseValue.Dose.ToString("F2");
+                    }
+                    else if (dv == "DC")
+                    {
+                      DoseValue doseValue = planSetup.GetDoseAtVolume(s, 100 - dx, 0, 0);
+                      value = doseValue.Dose.ToString("F2");
+                    }
                   }
                 }
                 else
@@ -331,17 +349,33 @@ namespace DVHAnalyzer
               {
                 if (unit == "Gy")
                 {
-                  DoseValue doseValue = planSetup.GetDoseAtVolume(s, dx, VolumePresentation.AbsoluteCm3, doseAbs);
-                  value = doseUnit == "cGy" ? (doseValue.Dose / 100.0).ToString("F2") : doseValue.Dose.ToString("F2");
+                  if (dv == "D")
+                  {
+                    DoseValue doseValue = planSetup.GetDoseAtVolume(s, dx, VolumePresentation.AbsoluteCm3, doseAbs);
+                    value = doseUnit == "cGy" ? (doseValue.Dose / 100.0).ToString("F2") : doseValue.Dose.ToString("F2");
+                  }
+                  else if (dv == "DC")
+                  {
+                    DoseValue doseValue = planSetup.GetDoseAtVolume(s, volume - dx, VolumePresentation.AbsoluteCm3, doseAbs);
+                    value = doseUnit == "cGy" ? (doseValue.Dose / 100.0).ToString("F2") : doseValue.Dose.ToString("F2");
+                  }
                 }
                 else
                 {
-                  DoseValue doseValue = planSetup.GetDoseAtVolume(s, dx, VolumePresentation.AbsoluteCm3, 0);
-                  value = doseValue.Dose.ToString("F2");
+                  if (dv == "D")
+                  {
+                    DoseValue doseValue = planSetup.GetDoseAtVolume(s, dx, VolumePresentation.AbsoluteCm3, 0);
+                    value = doseValue.Dose.ToString("F2");
+                  }
+                  else if (dv == "DC")
+                  {
+                    DoseValue doseValue = planSetup.GetDoseAtVolume(s, volume - dx, VolumePresentation.AbsoluteCm3, 0);
+                    value = doseValue.Dose.ToString("F2");
+                  }
                 }
               }
             }
-            else
+            else  // dv == "V" or "CV"
             {
               double vx = double.Parse(dv_value);
               if (dv_unit == "" || dv_value == "")
@@ -354,28 +388,56 @@ namespace DVHAnalyzer
                 {
                   DoseValue dose = new DoseValue(vx, DoseValue.DoseUnit.Percent);
                   double doseValue = planSetup.GetVolumeAtDose(s, dose, VolumePresentation.AbsoluteCm3);
-                  value = doseValue.ToString("F2");
+                  if (dv == "V")
+                  {
+                    value = doseValue.ToString("F2");
+                  }
+                  else if (dv == "CV")
+                  {
+                    value = (volume - doseValue).ToString("F2");
+                  }
                 }
                 else
                 {
                   DoseValue dose = new DoseValue(vx, DoseValue.DoseUnit.Percent);
                   double doseValue = planSetup.GetVolumeAtDose(s, dose, VolumePresentation.Relative);
-                  value = doseValue.ToString("F2");
+                  if (dv == "V")
+                  {
+                    value = doseValue.ToString("F2");
+                  }
+                  else if (dv == "CV")
+                  {
+                    value = (100.0 - doseValue).ToString("F2");
+                  }
                 }
               }
-              else
+              else // dvunit == "Gy"
               {
                 if (unit == "cc")
                 {
                   DoseValue dose = doseUnit == "cGy" ? new DoseValue(vx * 100, DoseValue.DoseUnit.cGy) : new DoseValue(vx, DoseValue.DoseUnit.Gy);
                   double doseValue = planSetup.GetVolumeAtDose(s, dose, VolumePresentation.AbsoluteCm3);
-                  value = doseValue.ToString("F2");
+                  if (dv == "V")
+                  {
+                    value = doseValue.ToString("F2");
+                  }
+                  else if (dv == "CV")
+                  {
+                    value = (volume - doseValue).ToString("F2");
+                  }
                 }
                 else
                 {
                   DoseValue dose = doseUnit == "cGy" ? new DoseValue(vx * 100, DoseValue.DoseUnit.cGy) : new DoseValue(vx, DoseValue.DoseUnit.Gy);
                   double doseValue = planSetup.GetVolumeAtDose(s, dose, VolumePresentation.Relative);
-                  value = doseValue.ToString("F2");
+                  if (dv == "V")
+                  {
+                    value = doseValue.ToString("F2");
+                  }
+                  else if (dv == "CV")
+                  {
+                    value = (100.0 - doseValue).ToString("F2");
+                  }
                 }
               }
             }
@@ -445,7 +507,7 @@ namespace DVHAnalyzer
             {
               if (tol != "")
               {
-                if (diff >= Convert.ToDouble(tol))
+                if (diff >= -Convert.ToDouble(tol))
                   row.Cells[Column_result.Index].Style.BackColor = tol_color;
                 else
                   row.Cells[Column_result.Index].Style.BackColor = ng_color;
@@ -504,19 +566,19 @@ namespace DVHAnalyzer
         {
           if (row.Length == 5)
           {
-            row.CopyTo(row = new string[row.Length + 6], 0);
+            row.CopyTo(row = new string[row.Length + 7], 0);
             row[7] = row[4];
-            row[8] = "";
             row[9] = "";
             row[10] = "";
+            row[11] = "";
             dataGridView1.Rows.Add(row);
           }
           else if (row.Length == 8)
           {
-            row.CopyTo(row = new string[row.Length + 3], 0);
-            row[10] = row[7];
-            row[9] = row[6];
-            row[8] = row[5];
+            row.CopyTo(row = new string[row.Length + 4], 0);
+            row[11] = row[7];
+            row[10] = row[6];
+            row[9] = row[5];
             row[7] = row[4];
             row[6] = "";
             row[5] = "";
@@ -557,7 +619,7 @@ namespace DVHAnalyzer
 
             for (int j = 0; j < dataGridView1.Columns.Count; j++)
             {
-              if (j < 5 || j > 7)
+              if (j < 5 || j > 8)
               {
                 strList.Add(Convert.ToString(dataGridView1[j, i].Value));
               }
@@ -612,7 +674,7 @@ namespace DVHAnalyzer
 
             for (int j = 0; j < dataGridView1.Columns.Count; j++)
             {
-              if (j < 1 || j > 5)
+              if ((j < 1 || j > 5) && j != 8)
               {
                 strList.Add(Convert.ToString(dataGridView1[j, i].Value));
               }

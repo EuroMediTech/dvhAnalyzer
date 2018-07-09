@@ -390,9 +390,19 @@ blockquote {
 <h2 id="%E4%BD%BF%E3%81%84%E6%96%B9">使い方</h2>
 <p>下記操作にて、DVH情報を取得できます。<br>
 <img src="img/Movie.gif" alt="操作方法"></p>
+<h3 id="dvh%E8%A7%A3%E6%9E%90%E6%A9%9F%E8%83%BD">DVH解析機能</h3>
+<p>Structure, DVHパラメータ（含入出力単位）を指定することでDVHの計算が可能です。<br>
+また、許容値を設定することで結果の判定が可能です。基準値内（Criteriaの値）の場合は緑、許容範囲内（Criteria +/- Tolerance）は黄、範囲外は赤になります。<br>
+CV/DCは
+<a href="https://www.aapm.org/pubs/reports/RPT_263_Supplemental/default.asp">AAPM TG-263</a>
+で定義されている、低線量側のための指標です。<br>
+Ex1) CV10Gy[cc]: 当該Structureの10Gy以下の体積を絶対値で示します。<br>
+Ex2) DC0.1cc[Gy]: 当該Structureの最も線量の低い0.1 ccのうちの最大線量を示します。</p>
 <h3 id="%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E6%A9%9F%E8%83%BD">その他の機能</h3>
-<p>一度作成したDVH項目はTemplateとして保存可能です。保存したTemplateを読み込む際は、Structure名のマッチング画面が開きます。<br>
-Export機能により、CSVファイルとして出力することができます。</p>
+<p>一度作成したDVH項目はTemplateとして保存可能です。
+保存したTemplateを読み込む際は、Templateに登録されたStructure名と、現在開いているPlanのStructure名のマッチングを行うことで柔軟な対応が可能です。<br>
+Export機能により、解析結果をCSVファイルとして出力することができます。<br>
+Templateの保存先、解析結果の保存先フォルダをSettings画面より設定可能です。</p>
 <h2 id="%E3%83%93%E3%83%AB%E3%83%89%E6%96%B9%E6%B3%95">ビルド方法</h2>
 <p>Visual Studioを利用するか、あるいはコマンドラインベースで <code>DVHAnalyzer.csproj</code> をビルドして使用します。<br>
 ここでは、Visual Studioなしでビルドする方法について紹介します。</p>

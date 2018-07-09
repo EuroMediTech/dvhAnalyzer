@@ -64,6 +64,7 @@
       this.Column_space = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.Column_result = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.Column_textunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.Column_space2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.Column_sign = new System.Windows.Forms.DataGridViewComboBoxColumn();
       this.Column_criteria = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.Column_tol = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -103,7 +104,7 @@
       this.splitContainer1.Panel2.Controls.Add(this.button_export);
       this.splitContainer1.Panel2.Controls.Add(this.button_save);
       this.splitContainer1.Panel2.Controls.Add(this.button_open);
-      this.splitContainer1.Size = new System.Drawing.Size(923, 761);
+      this.splitContainer1.Size = new System.Drawing.Size(953, 761);
       this.splitContainer1.SplitterDistance = 672;
       this.splitContainer1.SplitterWidth = 6;
       this.splitContainer1.TabIndex = 0;
@@ -131,7 +132,7 @@
       // splitContainer2.Panel2
       // 
       this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-      this.splitContainer2.Size = new System.Drawing.Size(923, 672);
+      this.splitContainer2.Size = new System.Drawing.Size(953, 672);
       this.splitContainer2.SplitterDistance = 128;
       this.splitContainer2.TabIndex = 1;
       // 
@@ -143,7 +144,7 @@
       this.toolStrip1.Location = new System.Drawing.Point(0, 0);
       this.toolStrip1.Name = "toolStrip1";
       this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-      this.toolStrip1.Size = new System.Drawing.Size(923, 27);
+      this.toolStrip1.Size = new System.Drawing.Size(953, 27);
       this.toolStrip1.TabIndex = 11;
       this.toolStrip1.Text = "toolStrip1";
       // 
@@ -225,7 +226,7 @@
       // 
       // button_delete
       // 
-      this.button_delete.Location = new System.Drawing.Point(645, 86);
+      this.button_delete.Location = new System.Drawing.Point(677, 86);
       this.button_delete.Name = "button_delete";
       this.button_delete.Size = new System.Drawing.Size(115, 36);
       this.button_delete.TabIndex = 4;
@@ -235,7 +236,7 @@
       // 
       // button_add
       // 
-      this.button_add.Location = new System.Drawing.Point(518, 86);
+      this.button_add.Location = new System.Drawing.Point(550, 86);
       this.button_add.Name = "button_add";
       this.button_add.Size = new System.Drawing.Size(121, 36);
       this.button_add.TabIndex = 3;
@@ -245,7 +246,7 @@
       // 
       // button_calc
       // 
-      this.button_calc.Location = new System.Drawing.Point(766, 86);
+      this.button_calc.Location = new System.Drawing.Point(798, 86);
       this.button_calc.Name = "button_calc";
       this.button_calc.Size = new System.Drawing.Size(141, 36);
       this.button_calc.TabIndex = 2;
@@ -268,7 +269,7 @@
       // 
       this.splitContainer3.Panel2.Controls.Add(this.label_mu);
       this.splitContainer3.Panel2.Controls.Add(this.label1);
-      this.splitContainer3.Size = new System.Drawing.Size(923, 540);
+      this.splitContainer3.Size = new System.Drawing.Size(953, 540);
       this.splitContainer3.SplitterDistance = 487;
       this.splitContainer3.TabIndex = 2;
       // 
@@ -288,6 +289,7 @@
             this.Column_space,
             this.Column_result,
             this.Column_textunit,
+            this.Column_space2,
             this.Column_sign,
             this.Column_criteria,
             this.Column_tol});
@@ -298,7 +300,7 @@
       this.dataGridView1.RowHeadersVisible = false;
       this.dataGridView1.RowTemplate.Height = 30;
       this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-      this.dataGridView1.Size = new System.Drawing.Size(923, 487);
+      this.dataGridView1.Size = new System.Drawing.Size(953, 487);
       this.dataGridView1.TabIndex = 0;
       this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
       this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
@@ -307,7 +309,7 @@
       // 
       this.label_mu.AutoSize = true;
       this.label_mu.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
-      this.label_mu.Location = new System.Drawing.Point(784, 10);
+      this.label_mu.Location = new System.Drawing.Point(820, 10);
       this.label_mu.Name = "label_mu";
       this.label_mu.Size = new System.Drawing.Size(0, 25);
       this.label_mu.TabIndex = 2;
@@ -316,7 +318,7 @@
       // 
       this.label1.AutoSize = true;
       this.label1.Font = new System.Drawing.Font("Segoe UI", 13F);
-      this.label1.Location = new System.Drawing.Point(696, 10);
+      this.label1.Location = new System.Drawing.Point(732, 10);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(82, 25);
       this.label1.TabIndex = 1;
@@ -324,7 +326,7 @@
       // 
       // button_close
       // 
-      this.button_close.Location = new System.Drawing.Point(795, 42);
+      this.button_close.Location = new System.Drawing.Point(827, 42);
       this.button_close.Name = "button_close";
       this.button_close.Size = new System.Drawing.Size(112, 35);
       this.button_close.TabIndex = 3;
@@ -344,7 +346,7 @@
       // 
       // button_export
       // 
-      this.button_export.Location = new System.Drawing.Point(795, 0);
+      this.button_export.Location = new System.Drawing.Point(827, 0);
       this.button_export.Name = "button_export";
       this.button_export.Size = new System.Drawing.Size(112, 36);
       this.button_export.TabIndex = 2;
@@ -354,7 +356,7 @@
       // 
       // button_save
       // 
-      this.button_save.Location = new System.Drawing.Point(637, 0);
+      this.button_save.Location = new System.Drawing.Point(677, 0);
       this.button_save.Name = "button_save";
       this.button_save.Size = new System.Drawing.Size(141, 36);
       this.button_save.TabIndex = 1;
@@ -364,7 +366,7 @@
       // 
       // button_open
       // 
-      this.button_open.Location = new System.Drawing.Point(490, 0);
+      this.button_open.Location = new System.Drawing.Point(530, 0);
       this.button_open.Name = "button_open";
       this.button_open.Size = new System.Drawing.Size(141, 36);
       this.button_open.TabIndex = 0;
@@ -422,11 +424,11 @@
       // 
       // Column_space
       // 
-      this.Column_space.FillWeight = 10F;
+      this.Column_space.FillWeight = 8F;
       this.Column_space.HeaderText = "";
       this.Column_space.Name = "Column_space";
       this.Column_space.ReadOnly = true;
-      this.Column_space.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+      this.Column_space.Resizable = System.Windows.Forms.DataGridViewTriState.False;
       this.Column_space.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
       // 
       // Column_result
@@ -445,6 +447,15 @@
       this.Column_textunit.HeaderText = "";
       this.Column_textunit.Name = "Column_textunit";
       this.Column_textunit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+      // 
+      // Column_space2
+      // 
+      this.Column_space2.FillWeight = 8F;
+      this.Column_space2.HeaderText = "";
+      this.Column_space2.Name = "Column_space2";
+      this.Column_space2.ReadOnly = true;
+      this.Column_space2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+      this.Column_space2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
       // 
       // Column_sign
       // 
@@ -475,7 +486,7 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(923, 761);
+      this.ClientSize = new System.Drawing.Size(953, 761);
       this.Controls.Add(this.splitContainer1);
       this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.KeyPreview = true;
@@ -542,6 +553,7 @@
     private System.Windows.Forms.DataGridViewTextBoxColumn Column_space;
     private System.Windows.Forms.DataGridViewTextBoxColumn Column_result;
     private System.Windows.Forms.DataGridViewTextBoxColumn Column_textunit;
+    private System.Windows.Forms.DataGridViewTextBoxColumn Column_space2;
     private System.Windows.Forms.DataGridViewComboBoxColumn Column_sign;
     private System.Windows.Forms.DataGridViewTextBoxColumn Column_criteria;
     private System.Windows.Forms.DataGridViewTextBoxColumn Column_tol;
