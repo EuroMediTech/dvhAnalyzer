@@ -29,12 +29,12 @@
     private void InitializeComponent()
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
       this.splitContainer1 = new System.Windows.Forms.SplitContainer();
       this.splitContainer2 = new System.Windows.Forms.SplitContainer();
       this.toolStrip1 = new System.Windows.Forms.ToolStrip();
       this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
       this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-      this.pictureBox1 = new System.Windows.Forms.PictureBox();
       this.label7 = new System.Windows.Forms.Label();
       this.label6 = new System.Windows.Forms.Label();
       this.label5 = new System.Windows.Forms.Label();
@@ -46,6 +46,16 @@
       this.button_calc = new System.Windows.Forms.Button();
       this.splitContainer3 = new System.Windows.Forms.SplitContainer();
       this.dataGridView1 = new System.Windows.Forms.DataGridView();
+      this.label_mu = new System.Windows.Forms.Label();
+      this.label1 = new System.Windows.Forms.Label();
+      this.button_close = new System.Windows.Forms.Button();
+      this.pictureBox1 = new System.Windows.Forms.PictureBox();
+      this.button_export = new System.Windows.Forms.Button();
+      this.button_save = new System.Windows.Forms.Button();
+      this.button_open = new System.Windows.Forms.Button();
+      this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+      this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+      this.saveFileDialog2 = new System.Windows.Forms.SaveFileDialog();
       this.Column_structure = new System.Windows.Forms.DataGridViewComboBoxColumn();
       this.Column_dv = new System.Windows.Forms.DataGridViewComboBoxColumn();
       this.Column_dvvalue = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,15 +64,9 @@
       this.Column_space = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.Column_result = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.Column_textunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.label_mu = new System.Windows.Forms.Label();
-      this.label1 = new System.Windows.Forms.Label();
-      this.button_close = new System.Windows.Forms.Button();
-      this.button_export = new System.Windows.Forms.Button();
-      this.button_save = new System.Windows.Forms.Button();
-      this.button_open = new System.Windows.Forms.Button();
-      this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-      this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-      this.saveFileDialog2 = new System.Windows.Forms.SaveFileDialog();
+      this.Column_sign = new System.Windows.Forms.DataGridViewComboBoxColumn();
+      this.Column_criteria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.Column_tol = new System.Windows.Forms.DataGridViewTextBoxColumn();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
       this.splitContainer1.Panel1.SuspendLayout();
       this.splitContainer1.Panel2.SuspendLayout();
@@ -72,12 +76,12 @@
       this.splitContainer2.Panel2.SuspendLayout();
       this.splitContainer2.SuspendLayout();
       this.toolStrip1.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
       this.splitContainer3.Panel1.SuspendLayout();
       this.splitContainer3.Panel2.SuspendLayout();
       this.splitContainer3.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
       this.SuspendLayout();
       // 
       // splitContainer1
@@ -99,7 +103,7 @@
       this.splitContainer1.Panel2.Controls.Add(this.button_export);
       this.splitContainer1.Panel2.Controls.Add(this.button_save);
       this.splitContainer1.Panel2.Controls.Add(this.button_open);
-      this.splitContainer1.Size = new System.Drawing.Size(790, 761);
+      this.splitContainer1.Size = new System.Drawing.Size(923, 761);
       this.splitContainer1.SplitterDistance = 672;
       this.splitContainer1.SplitterWidth = 6;
       this.splitContainer1.TabIndex = 0;
@@ -127,7 +131,7 @@
       // splitContainer2.Panel2
       // 
       this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-      this.splitContainer2.Size = new System.Drawing.Size(790, 672);
+      this.splitContainer2.Size = new System.Drawing.Size(923, 672);
       this.splitContainer2.SplitterDistance = 128;
       this.splitContainer2.TabIndex = 1;
       // 
@@ -139,7 +143,7 @@
       this.toolStrip1.Location = new System.Drawing.Point(0, 0);
       this.toolStrip1.Name = "toolStrip1";
       this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-      this.toolStrip1.Size = new System.Drawing.Size(790, 27);
+      this.toolStrip1.Size = new System.Drawing.Size(923, 27);
       this.toolStrip1.TabIndex = 11;
       this.toolStrip1.Text = "toolStrip1";
       // 
@@ -164,16 +168,6 @@
       this.toolStripButton2.Size = new System.Drawing.Size(45, 24);
       this.toolStripButton2.Text = "Help";
       this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
-      // 
-      // pictureBox1
-      // 
-      this.pictureBox1.Image = global::DVHAnalyzer.Properties.Resources.EMTlogo;
-      this.pictureBox1.Location = new System.Drawing.Point(12, 38);
-      this.pictureBox1.Name = "pictureBox1";
-      this.pictureBox1.Size = new System.Drawing.Size(268, 42);
-      this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-      this.pictureBox1.TabIndex = 4;
-      this.pictureBox1.TabStop = false;
       // 
       // label7
       // 
@@ -231,7 +225,7 @@
       // 
       // button_delete
       // 
-      this.button_delete.Location = new System.Drawing.Point(523, 82);
+      this.button_delete.Location = new System.Drawing.Point(645, 86);
       this.button_delete.Name = "button_delete";
       this.button_delete.Size = new System.Drawing.Size(115, 36);
       this.button_delete.TabIndex = 4;
@@ -241,7 +235,7 @@
       // 
       // button_add
       // 
-      this.button_add.Location = new System.Drawing.Point(396, 82);
+      this.button_add.Location = new System.Drawing.Point(518, 86);
       this.button_add.Name = "button_add";
       this.button_add.Size = new System.Drawing.Size(121, 36);
       this.button_add.TabIndex = 3;
@@ -251,7 +245,7 @@
       // 
       // button_calc
       // 
-      this.button_calc.Location = new System.Drawing.Point(644, 82);
+      this.button_calc.Location = new System.Drawing.Point(766, 86);
       this.button_calc.Name = "button_calc";
       this.button_calc.Size = new System.Drawing.Size(141, 36);
       this.button_calc.TabIndex = 2;
@@ -274,7 +268,7 @@
       // 
       this.splitContainer3.Panel2.Controls.Add(this.label_mu);
       this.splitContainer3.Panel2.Controls.Add(this.label1);
-      this.splitContainer3.Size = new System.Drawing.Size(790, 540);
+      this.splitContainer3.Size = new System.Drawing.Size(923, 540);
       this.splitContainer3.SplitterDistance = 487;
       this.splitContainer3.TabIndex = 2;
       // 
@@ -293,7 +287,10 @@
             this.Column_unit,
             this.Column_space,
             this.Column_result,
-            this.Column_textunit});
+            this.Column_textunit,
+            this.Column_sign,
+            this.Column_criteria,
+            this.Column_tol});
       this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.dataGridView1.Location = new System.Drawing.Point(0, 0);
       this.dataGridView1.Name = "dataGridView1";
@@ -301,40 +298,111 @@
       this.dataGridView1.RowHeadersVisible = false;
       this.dataGridView1.RowTemplate.Height = 30;
       this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-      this.dataGridView1.Size = new System.Drawing.Size(790, 487);
+      this.dataGridView1.Size = new System.Drawing.Size(923, 487);
       this.dataGridView1.TabIndex = 0;
       this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
       this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
       // 
+      // label_mu
+      // 
+      this.label_mu.AutoSize = true;
+      this.label_mu.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
+      this.label_mu.Location = new System.Drawing.Point(784, 10);
+      this.label_mu.Name = "label_mu";
+      this.label_mu.Size = new System.Drawing.Size(0, 25);
+      this.label_mu.TabIndex = 2;
+      // 
+      // label1
+      // 
+      this.label1.AutoSize = true;
+      this.label1.Font = new System.Drawing.Font("Segoe UI", 13F);
+      this.label1.Location = new System.Drawing.Point(696, 10);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(82, 25);
+      this.label1.TabIndex = 1;
+      this.label1.Text = "Total MU";
+      // 
+      // button_close
+      // 
+      this.button_close.Location = new System.Drawing.Point(795, 42);
+      this.button_close.Name = "button_close";
+      this.button_close.Size = new System.Drawing.Size(112, 35);
+      this.button_close.TabIndex = 3;
+      this.button_close.Text = "Close";
+      this.button_close.UseVisualStyleBackColor = true;
+      this.button_close.Click += new System.EventHandler(this.button_close_Click);
+      // 
+      // pictureBox1
+      // 
+      this.pictureBox1.Image = global::DVHAnalyzer.Properties.Resources.EMTlogo;
+      this.pictureBox1.Location = new System.Drawing.Point(12, 38);
+      this.pictureBox1.Name = "pictureBox1";
+      this.pictureBox1.Size = new System.Drawing.Size(268, 42);
+      this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+      this.pictureBox1.TabIndex = 4;
+      this.pictureBox1.TabStop = false;
+      // 
+      // button_export
+      // 
+      this.button_export.Location = new System.Drawing.Point(795, 0);
+      this.button_export.Name = "button_export";
+      this.button_export.Size = new System.Drawing.Size(112, 36);
+      this.button_export.TabIndex = 2;
+      this.button_export.Text = "Export";
+      this.button_export.UseVisualStyleBackColor = true;
+      this.button_export.Click += new System.EventHandler(this.button_export_Click);
+      // 
+      // button_save
+      // 
+      this.button_save.Location = new System.Drawing.Point(637, 0);
+      this.button_save.Name = "button_save";
+      this.button_save.Size = new System.Drawing.Size(141, 36);
+      this.button_save.TabIndex = 1;
+      this.button_save.Text = "Save as Template";
+      this.button_save.UseVisualStyleBackColor = true;
+      this.button_save.Click += new System.EventHandler(this.button_save_Click);
+      // 
+      // button_open
+      // 
+      this.button_open.Location = new System.Drawing.Point(490, 0);
+      this.button_open.Name = "button_open";
+      this.button_open.Size = new System.Drawing.Size(141, 36);
+      this.button_open.TabIndex = 0;
+      this.button_open.Text = "Open Template";
+      this.button_open.UseVisualStyleBackColor = true;
+      this.button_open.Click += new System.EventHandler(this.button_open_Click);
+      // 
       // Column_structure
       // 
-      this.Column_structure.FillWeight = 106.599F;
+      this.Column_structure.FillWeight = 110F;
       this.Column_structure.HeaderText = "Structure";
       this.Column_structure.Name = "Column_structure";
       this.Column_structure.Sorted = true;
       // 
       // Column_dv
       // 
-      this.Column_dv.FillWeight = 97.63348F;
+      this.Column_dv.FillWeight = 90F;
       this.Column_dv.HeaderText = "Dose/Volume";
       this.Column_dv.Items.AddRange(new object[] {
             "V",
             "D",
             "Dmax",
             "Dmean",
-            "Dmin"});
+            "Dmin",
+            "CV",
+            "DC"});
       this.Column_dv.Name = "Column_dv";
       // 
       // Column_dvvalue
       // 
-      this.Column_dvvalue.FillWeight = 97.63348F;
+      this.Column_dvvalue.FillWeight = 60F;
       this.Column_dvvalue.HeaderText = "Value";
       this.Column_dvvalue.Name = "Column_dvvalue";
       this.Column_dvvalue.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
       // 
       // Column_dvunit
       // 
-      this.Column_dvunit.FillWeight = 50F;
+      this.Column_dvunit.FillWeight = 60F;
       this.Column_dvunit.HeaderText = "In_Unit";
       this.Column_dvunit.Items.AddRange(new object[] {
             "Gy",
@@ -363,6 +431,8 @@
       // 
       // Column_result
       // 
+      dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.Column_result.DefaultCellStyle = dataGridViewCellStyle1;
       this.Column_result.FillWeight = 97.63348F;
       this.Column_result.HeaderText = "Result";
       this.Column_result.Name = "Column_result";
@@ -376,70 +446,36 @@
       this.Column_textunit.Name = "Column_textunit";
       this.Column_textunit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
       // 
-      // label_mu
+      // Column_sign
       // 
-      this.label_mu.AutoSize = true;
-      this.label_mu.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
-      this.label_mu.Location = new System.Drawing.Point(705, 6);
-      this.label_mu.Name = "label_mu";
-      this.label_mu.Size = new System.Drawing.Size(0, 25);
-      this.label_mu.TabIndex = 2;
+      this.Column_sign.FillWeight = 50F;
+      this.Column_sign.HeaderText = "Sign";
+      this.Column_sign.Items.AddRange(new object[] {
+            "=",
+            "<=",
+            ">="});
+      this.Column_sign.Name = "Column_sign";
+      this.Column_sign.Resizable = System.Windows.Forms.DataGridViewTriState.True;
       // 
-      // label1
+      // Column_criteria
       // 
-      this.label1.AutoSize = true;
-      this.label1.Font = new System.Drawing.Font("Segoe UI", 13F);
-      this.label1.Location = new System.Drawing.Point(617, 6);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(82, 25);
-      this.label1.TabIndex = 1;
-      this.label1.Text = "Total MU";
+      this.Column_criteria.FillWeight = 80F;
+      this.Column_criteria.HeaderText = "Criteria";
+      this.Column_criteria.Name = "Column_criteria";
+      this.Column_criteria.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
       // 
-      // button_close
+      // Column_tol
       // 
-      this.button_close.Location = new System.Drawing.Point(672, 42);
-      this.button_close.Name = "button_close";
-      this.button_close.Size = new System.Drawing.Size(112, 35);
-      this.button_close.TabIndex = 3;
-      this.button_close.Text = "Close";
-      this.button_close.UseVisualStyleBackColor = true;
-      this.button_close.Click += new System.EventHandler(this.button_close_Click);
-      // 
-      // button_export
-      // 
-      this.button_export.Location = new System.Drawing.Point(672, 0);
-      this.button_export.Name = "button_export";
-      this.button_export.Size = new System.Drawing.Size(112, 36);
-      this.button_export.TabIndex = 2;
-      this.button_export.Text = "Export";
-      this.button_export.UseVisualStyleBackColor = true;
-      this.button_export.Click += new System.EventHandler(this.button_export_Click);
-      // 
-      // button_save
-      // 
-      this.button_save.Location = new System.Drawing.Point(516, 0);
-      this.button_save.Name = "button_save";
-      this.button_save.Size = new System.Drawing.Size(141, 36);
-      this.button_save.TabIndex = 1;
-      this.button_save.Text = "Save as Template";
-      this.button_save.UseVisualStyleBackColor = true;
-      this.button_save.Click += new System.EventHandler(this.button_save_Click);
-      // 
-      // button_open
-      // 
-      this.button_open.Location = new System.Drawing.Point(369, 0);
-      this.button_open.Name = "button_open";
-      this.button_open.Size = new System.Drawing.Size(141, 36);
-      this.button_open.TabIndex = 0;
-      this.button_open.Text = "Open Template";
-      this.button_open.UseVisualStyleBackColor = true;
-      this.button_open.Click += new System.EventHandler(this.button_open_Click);
+      this.Column_tol.FillWeight = 70F;
+      this.Column_tol.HeaderText = "Tolerance";
+      this.Column_tol.Name = "Column_tol";
+      this.Column_tol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
       // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(790, 761);
+      this.ClientSize = new System.Drawing.Size(923, 761);
       this.Controls.Add(this.splitContainer1);
       this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.KeyPreview = true;
@@ -459,13 +495,13 @@
       this.splitContainer2.ResumeLayout(false);
       this.toolStrip1.ResumeLayout(false);
       this.toolStrip1.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
       this.splitContainer3.Panel1.ResumeLayout(false);
       this.splitContainer3.Panel2.ResumeLayout(false);
       this.splitContainer3.Panel2.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
       this.splitContainer3.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
       this.ResumeLayout(false);
 
     }
@@ -488,14 +524,6 @@
     private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     private System.Windows.Forms.SaveFileDialog saveFileDialog2;
     private System.Windows.Forms.Button button_close;
-    private System.Windows.Forms.DataGridViewComboBoxColumn Column_structure;
-    private System.Windows.Forms.DataGridViewComboBoxColumn Column_dv;
-    private System.Windows.Forms.DataGridViewTextBoxColumn Column_dvvalue;
-    private System.Windows.Forms.DataGridViewComboBoxColumn Column_dvunit;
-    private System.Windows.Forms.DataGridViewComboBoxColumn Column_unit;
-    private System.Windows.Forms.DataGridViewTextBoxColumn Column_space;
-    private System.Windows.Forms.DataGridViewTextBoxColumn Column_result;
-    private System.Windows.Forms.DataGridViewTextBoxColumn Column_textunit;
     private System.Windows.Forms.Label label4;
     private System.Windows.Forms.Label label3;
     private System.Windows.Forms.Label label2;
@@ -506,5 +534,16 @@
     private System.Windows.Forms.ToolStrip toolStrip1;
     private System.Windows.Forms.ToolStripButton toolStripButton1;
     private System.Windows.Forms.ToolStripButton toolStripButton2;
+    private System.Windows.Forms.DataGridViewComboBoxColumn Column_structure;
+    private System.Windows.Forms.DataGridViewComboBoxColumn Column_dv;
+    private System.Windows.Forms.DataGridViewTextBoxColumn Column_dvvalue;
+    private System.Windows.Forms.DataGridViewComboBoxColumn Column_dvunit;
+    private System.Windows.Forms.DataGridViewComboBoxColumn Column_unit;
+    private System.Windows.Forms.DataGridViewTextBoxColumn Column_space;
+    private System.Windows.Forms.DataGridViewTextBoxColumn Column_result;
+    private System.Windows.Forms.DataGridViewTextBoxColumn Column_textunit;
+    private System.Windows.Forms.DataGridViewComboBoxColumn Column_sign;
+    private System.Windows.Forms.DataGridViewTextBoxColumn Column_criteria;
+    private System.Windows.Forms.DataGridViewTextBoxColumn Column_tol;
   }
 }

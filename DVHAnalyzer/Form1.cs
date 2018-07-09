@@ -117,7 +117,7 @@ namespace DVHAnalyzer
             unit_cell.Items.Add("Gy");
             unit_cell.Items.Add("%");
           }
-          else if (dv == "D")
+          else if (dv == "D" || dv == "DC")
           {
             dataGridView1[Column_dvvalue.Index, dataGridView1.CurrentRow.Index].ReadOnly = false;
             dataGridView1[Column_dvunit.Index, dataGridView1.CurrentRow.Index].ReadOnly = false;
@@ -166,7 +166,10 @@ namespace DVHAnalyzer
           }
         }
 
-        if (e.ColumnIndex == Column_dvvalue.Index)
+        if (e.ColumnIndex == Column_dvvalue.Index |
+            e.ColumnIndex == Column_criteria.Index |
+            e.ColumnIndex == Column_tol.Index
+            )
         {
           if (Convert.ToString(dataGridView1[e.ColumnIndex, e.RowIndex].Value) != "")
           {
@@ -191,14 +194,18 @@ namespace DVHAnalyzer
           }
         }
 
-        if (e.ColumnIndex != Column_result.Index)
+        if (e.ColumnIndex != Column_result.Index & e.RowIndex == dataGridView1.CurrentRow.Index) 
+        {
           dataGridView1[Column_result.Index, dataGridView1.CurrentRow.Index].Value = "";
+          dataGridView1[Column_result.Index, dataGridView1.CurrentRow.Index].Style.BackColor = Color.White;
+        }
       }
 
     }
 
     private string CaluculateDVH(DataGridViewRow row)
     {
+
       // Get MU
       if (label_mu.Text == "")
       {
@@ -220,6 +227,9 @@ namespace DVHAnalyzer
       string dv_unit = Convert.ToString(row_cells[Column_dvunit.Index].Value);
       string unit = Convert.ToString(row_cells[Column_unit.Index].Value);
       string result = Convert.ToString(row_cells[Column_result.Index].Value);
+      string sign = Convert.ToString(row_cells[Column_sign.Index].Value);
+      string critria = Convert.ToString(row_cells[Column_criteria.Index].Value);
+      string tol = Convert.ToString(row_cells[Column_tol.Index].Value);
       string value = "";
       bool isUnitDetermined = false;
       string doseUnit = "";
@@ -372,6 +382,84 @@ namespace DVHAnalyzer
           }
         }
 
+        double compare = Convert.ToDouble(value);
+        double diff;
+        var ok_color = Color.LightGreen;
+        var tol_color = Color.Yellow;
+        var ng_color = Color.Red;
+
+        // Compare to criterion
+        if (sign != "" && critria != "")
+        {
+          diff = compare - Convert.ToDouble(critria);
+          if (sign == "=")
+          {
+            if (Math.Abs(diff) < 0.01)
+            {
+              row.Cells[Column_result.Index].Style.BackColor = ok_color;
+            }
+            else
+            {
+              if (tol != "")
+              {
+                if (Math.Abs(diff) < Convert.ToDouble(tol))
+                  row.Cells[Column_result.Index].Style.BackColor = tol_color;
+                else
+                  row.Cells[Column_result.Index].Style.BackColor = ng_color;
+              }
+              else
+              {
+                row.Cells[Column_result.Index].Style.BackColor = ng_color;
+              }
+            }
+
+          }
+          else if (sign == "<=")
+          {
+            if (diff <= 0)
+            {
+              row.Cells[Column_result.Index].Style.BackColor = ok_color;
+            }
+            else
+            {
+              if (tol != "")
+              {
+                if (diff <= Convert.ToDouble(tol))
+                  row.Cells[Column_result.Index].Style.BackColor = tol_color;
+                else
+                  row.Cells[Column_result.Index].Style.BackColor = ng_color;
+              }
+              else
+              {
+                row.Cells[Column_result.Index].Style.BackColor = ng_color;
+              }
+            }
+          }
+          else if (sign == ">=")
+          {
+            if (diff >= 0)
+            {
+              row.Cells[Column_result.Index].Style.BackColor = ok_color;
+            }
+            else
+            {
+              if (tol != "")
+              {
+                if (diff >= Convert.ToDouble(tol))
+                  row.Cells[Column_result.Index].Style.BackColor = tol_color;
+                else
+                  row.Cells[Column_result.Index].Style.BackColor = ng_color;
+              }
+              else
+              {
+                row.Cells[Column_result.Index].Style.BackColor = ng_color;
+              }
+            }
+
+          }
+        }
+
+
         return value;
       }
 
@@ -414,9 +502,26 @@ namespace DVHAnalyzer
 
         if (row[0] != "")
         {
-          row.CopyTo(row = new string[row.Length + 3], 0);
-          row[7] = row[4];
-          dataGridView1.Rows.Add(row);
+          if (row.Length == 5)
+          {
+            row.CopyTo(row = new string[row.Length + 6], 0);
+            row[7] = row[4];
+            row[8] = "";
+            row[9] = "";
+            row[10] = "";
+            dataGridView1.Rows.Add(row);
+          }
+          else if (row.Length == 8)
+          {
+            row.CopyTo(row = new string[row.Length + 3], 0);
+            row[10] = row[7];
+            row[9] = row[6];
+            row[8] = row[5];
+            row[7] = row[4];
+            row[6] = "";
+            row[5] = "";
+            dataGridView1.Rows.Add(row);
+          }
         }
 
         i++;
@@ -452,7 +557,7 @@ namespace DVHAnalyzer
 
             for (int j = 0; j < dataGridView1.Columns.Count; j++)
             {
-              if (j < 5)
+              if (j < 5 || j > 7)
               {
                 strList.Add(Convert.ToString(dataGridView1[j, i].Value));
               }
@@ -480,11 +585,21 @@ namespace DVHAnalyzer
 
         if (rowCount > 0)
         {
+          string head_id = String.Format("PID,{0}", context.Patient.Id);
+          string head_name = String.Format("Name,{0} {1}", context.Patient.LastName, context.Patient.FirstName);
+
+          writer.WriteLine(head_id);
+          writer.WriteLine(head_name);
+
           List<String> header = new List<String>();
 
-          header.Add(context.Patient.Id);
-          header.Add(context.Patient.LastName);
-          header.Add(context.Patient.FirstName);
+          header.Add("Structure");
+          header.Add("Parameter");
+          header.Add("DVH Value");
+          header.Add("DVH Unit");
+          header.Add("Judge");
+          header.Add("Criteria");
+          header.Add("Tolerance");
 
           String[] headerArray = header.ToArray();
           String headerCsvData = String.Join(",", headerArray);
