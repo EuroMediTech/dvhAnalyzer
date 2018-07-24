@@ -68,8 +68,8 @@ C:\...\dvhAnalyzer-master\DVHAnalyzer> C:\Windows\Microsoft.NET\Framework64\v4.0
 このプラグインは、Eclipse Ver. 13.7 で作成されています。
 Ver. 11.0, Ver. 13.6, Ver. 13.7 および Ver. 15.1 でビルドおよび動作確認をしています。
 Ver. 15以降の場合は、上記で使用している `DVHAnalyzer.csproj` を `DVHAnalyzer_v15.csproj` に読み替えてビルドを実行してください。  
-その他のバージョンの場合や、ビルドがうまくいかない場合は、emt-mediphys@euro-meditec.co.jp までお気軽にお問合せください。
+その他のバージョンの場合や、ビルドがうまくいかない場合、うまく動作しない場合は、emt-mediphys@euro-meditec.co.jp までお気軽にお問合せください。
 
 ## Special Thanks
 
-遠山尚紀さん、深田恭平さん
+遠山尚紀さん、深田恭平さん、藤田幸男さん
