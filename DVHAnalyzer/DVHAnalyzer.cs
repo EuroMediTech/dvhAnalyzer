@@ -1,35 +1,63 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Forms;
-using System.Collections.Generic;
+using DVHAnalyzer;
 using VMS.TPS.Common.Model.API;
 using VMS.TPS.Common.Model.Types;
-using DVHAnalyzer;
 
 namespace VMS.TPS
 {
   public class Script
   {
-    public Script()
-    {
-    }
+    public Script() { }
 
-    public void Execute(ScriptContext context /*, System.Windows.Window window*/)
+    public void Execute(ScriptContext context /*, System.Windows.Window window*/ )
     {
       PlanSetup planSetup = context.PlanSetup;
+      PlanSum psum = context.PlanSumsInScope.FirstOrDefault();
+      StructureSet structureSet;
+      bool isPlanSum = false;
+      string psumName = null;
 
       // If there's no selected plan with calculated dose throw an exception
-      if (planSetup == null || planSetup.Dose == null)
-        throw new ApplicationException("Please open a calculated plan before using this script.");
+      if (planSetup == null && psum == null)
+      {
+        throw new ApplicationException("Please open a calculated plan/planSum before using this script.");
+      }
+      else if (planSetup != null)
+      {
+        if (planSetup.Dose == null)
+          throw new ApplicationException("Please open a calculated plan before using this script.");
+
+        structureSet = planSetup.StructureSet;
+      }
+      else
+      {
+        if (psum.Dose == null)
+          throw new ApplicationException("Please open a calculated plansum before using this script.");
+
+        isPlanSum = true;
+        structureSet = psum.StructureSet;
+        psumName = psum.Course.ToString() + '/' + psum.Id;
+      }
 
       // Retrieve StructureSet
-      StructureSet structureSet = planSetup.StructureSet;
       if (structureSet == null)
         throw new ApplicationException("The selected plan does not reference a StructureSet.");
 
-      Form1 window = new Form1(context);
+      Form1 window;
+
+      if (!isPlanSum)
+      {
+        window = new Form1(context);
+      }
+      else
+      {
+        window = new Form1(context, true, psumName); 
+      }
       window.ShowDialog();
     }
   }

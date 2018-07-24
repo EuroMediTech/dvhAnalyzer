@@ -16,21 +16,41 @@ namespace DVHAnalyzer
   public partial class Form1 : Form
   {
     ScriptContext context { get; set; }
-    PlanSetup planSetup { get; set; }
+    PlanningItem planSetup { get; set; }
     StructureSet ss { get; set; }
+    bool isPlanSum;
 
     string setting = String.Format(@"{0}\EMT\settings.ini", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
 
-    public Form1(ScriptContext _context)
+    public Form1(ScriptContext _context, bool _isPlanSum = false, string psumName = "")
     {
       InitializeComponent();
       context = _context;
-      planSetup = context.PlanSetup;
-      ss = planSetup.StructureSet;
+      isPlanSum = _isPlanSum;
+      if (!isPlanSum)
+      {
+        planSetup = context.PlanSetup;
+        ss = ((PlanSetup) planSetup).StructureSet;
+      }
+      else
+      {
+        var courseId = psumName.Split('/') [0];
+        var psumId = psumName.Split('/') [1];
+        var course = context.Patient.Courses.First(c => c.Id == courseId);
+        planSetup = course.PlanSums.First(psum => psum.Id == psumId);
+        ss = ((PlanSum) planSetup).StructureSet;
+      }
 
       label5.Text = context.Patient.Id;
       label6.Text = String.Format("{0} {1}", context.Patient.LastName, context.Patient.FirstName);
-      label7.Text = planSetup.Id;
+      if (!isPlanSum)
+      {
+        label7.Text = planSetup.Id;
+      }
+      else
+      {
+        label7.Text = psumName;
+      }
 
       foreach (Structure structure in ss.Structures)
       {
@@ -111,11 +131,15 @@ namespace DVHAnalyzer
             {
               dataGridView1[Column_unit.Index, dataGridView1.CurrentRow.Index].Value = "";
             }
+            if (isPlanSum && Convert.ToString(dataGridView1[Column_unit.Index, dataGridView1.CurrentRow.Index].Value) == "%")
+            {
+              dataGridView1[Column_unit.Index, dataGridView1.CurrentRow.Index].Value = "";
+            }
 
             DataGridViewComboBoxCell unit_cell = dataGridView1[Column_unit.Index, dataGridView1.CurrentRow.Index] as DataGridViewComboBoxCell;
             unit_cell.Items.Clear();
             unit_cell.Items.Add("Gy");
-            unit_cell.Items.Add("%");
+            if (!isPlanSum) unit_cell.Items.Add("%");
           }
           else if (dv == "D" || dv == "DC")
           {
@@ -127,6 +151,10 @@ namespace DVHAnalyzer
             {
               dataGridView1[Column_unit.Index, dataGridView1.CurrentRow.Index].Value = "";
             }
+            if (isPlanSum && Convert.ToString(dataGridView1[Column_unit.Index, dataGridView1.CurrentRow.Index].Value) == "%")
+            {
+              dataGridView1[Column_unit.Index, dataGridView1.CurrentRow.Index].Value = "";
+            }
             if (Convert.ToString(dataGridView1[Column_dvunit.Index, dataGridView1.CurrentRow.Index].Value) == "Gy")
             {
               dataGridView1[Column_dvunit.Index, dataGridView1.CurrentRow.Index].Value = "";
@@ -135,7 +163,7 @@ namespace DVHAnalyzer
             DataGridViewComboBoxCell unit_cell = dataGridView1[Column_unit.Index, dataGridView1.CurrentRow.Index] as DataGridViewComboBoxCell;
             unit_cell.Items.Clear();
             unit_cell.Items.Add("Gy");
-            unit_cell.Items.Add("%");
+            if (!isPlanSum) unit_cell.Items.Add("%");
             DataGridViewComboBoxCell dvunit_cell = dataGridView1[Column_dvunit.Index, dataGridView1.CurrentRow.Index] as DataGridViewComboBoxCell;
             dvunit_cell.Items.Clear();
             dvunit_cell.Items.Add("cc");
@@ -155,6 +183,10 @@ namespace DVHAnalyzer
             {
               dataGridView1[Column_dvunit.Index, dataGridView1.CurrentRow.Index].Value = "";
             }
+            if (isPlanSum && Convert.ToString(dataGridView1[Column_dvunit.Index, dataGridView1.CurrentRow.Index].Value) == "%")
+            {
+              dataGridView1[Column_dvunit.Index, dataGridView1.CurrentRow.Index].Value = "";
+            }
             DataGridViewComboBoxCell unit_cell = dataGridView1[Column_unit.Index, dataGridView1.CurrentRow.Index] as DataGridViewComboBoxCell;
             unit_cell.Items.Clear();
             unit_cell.Items.Add("cc");
@@ -162,14 +194,14 @@ namespace DVHAnalyzer
             DataGridViewComboBoxCell dvunit_cell = dataGridView1[Column_dvunit.Index, dataGridView1.CurrentRow.Index] as DataGridViewComboBoxCell;
             dvunit_cell.Items.Clear();
             dvunit_cell.Items.Add("Gy");
-            dvunit_cell.Items.Add("%");
+            if (!isPlanSum) dvunit_cell.Items.Add("%");
           }
         }
 
         if (e.ColumnIndex == Column_dvvalue.Index |
-            e.ColumnIndex == Column_criteria.Index |
-            e.ColumnIndex == Column_tol.Index
-            )
+          e.ColumnIndex == Column_criteria.Index |
+          e.ColumnIndex == Column_tol.Index
+        )
         {
           if (Convert.ToString(dataGridView1[e.ColumnIndex, e.RowIndex].Value) != "")
           {
@@ -194,7 +226,7 @@ namespace DVHAnalyzer
           }
         }
 
-        if (e.ColumnIndex != Column_result.Index & e.RowIndex == dataGridView1.CurrentRow.Index) 
+        if (e.ColumnIndex != Column_result.Index & e.RowIndex == dataGridView1.CurrentRow.Index)
         {
           dataGridView1[Column_result.Index, dataGridView1.CurrentRow.Index].Value = "";
           dataGridView1[Column_result.Index, dataGridView1.CurrentRow.Index].Style.BackColor = Color.White;
@@ -210,13 +242,28 @@ namespace DVHAnalyzer
       if (label_mu.Text == "")
       {
         int MU = 0;
-        var beams = planSetup.Beams;
-        foreach (var beam in beams)
+        if (!isPlanSum)
         {
-          if (!beam.IsSetupField)
-            MU += (int) Math.Round(beam.Meterset.Value * 10);
+          var beams = ((PlanSetup) planSetup).Beams;
+          foreach (var beam in beams)
+          {
+            if (!beam.IsSetupField)
+              MU += (int) Math.Round(beam.Meterset.Value * 10);
+          }
+          label_mu.Text = (1.0 * MU / 10).ToString("F1");
         }
-        label_mu.Text = (1.0 * MU / 10).ToString("F1");
+        else
+        {
+          foreach (var plan in ((PlanSum) planSetup).PlanSetups)
+          {
+            foreach (var beam in plan.Beams)
+            {
+              if (!beam.IsSetupField)
+                MU += (int) Math.Round(beam.Meterset.Value * 10);
+            }
+          }
+          label_mu.Text = (1.0 * MU / 10).ToString("F1");
+        }
       }
 
       DataGridViewCellCollection row_cells = row.Cells;
@@ -375,7 +422,7 @@ namespace DVHAnalyzer
                 }
               }
             }
-            else  // dv == "V" or "CV"
+            else // dv == "V" or "CV"
             {
               double vx = double.Parse(dv_value);
               if (dv_unit == "" || dv_value == "")
@@ -521,7 +568,6 @@ namespace DVHAnalyzer
           }
         }
 
-
         return value;
       }
 
@@ -592,13 +638,42 @@ namespace DVHAnalyzer
       // Automatically calculate
       foreach (DataGridViewRow r in dataGridView1.Rows)
       {
+        DataGridViewComboBoxCell unit_cell = r.Cells[Column_unit.Index] as DataGridViewComboBoxCell;
+        DataGridViewComboBoxCell dvunit_cell = r.Cells[Column_dvunit.Index] as DataGridViewComboBoxCell;
         string dv = Convert.ToString(r.Cells[Column_dv.Index].Value);
+
         if (dv == "Dmax" || dv == "Dmean" || dv == "Dmin")
         {
           r.Cells[Column_dvvalue.Index].ReadOnly = true;
           r.Cells[Column_dvvalue.Index].Style.BackColor = Color.LightGray;
           r.Cells[Column_dvunit.Index].ReadOnly = true;
           r.Cells[Column_dvunit.Index].Style.BackColor = Color.LightGray;
+
+          if (isPlanSum && Convert.ToString(r.Cells[Column_unit.Index].Value) == "%")
+            r.Cells[Column_unit.Index].Value = "";
+
+          unit_cell.Items.Remove("cc");
+          if (isPlanSum) unit_cell.Items.Remove("%");
+        }
+        else if (dv == "D" || dv == "DC")
+        {
+          if (isPlanSum && Convert.ToString(r.Cells[Column_unit.Index].Value) == "%")
+            r.Cells[Column_unit.Index].Value = "";
+
+          unit_cell.Items.Remove("cc");
+          if (isPlanSum) unit_cell.Items.Remove("%");
+
+          dvunit_cell.Items.Remove("Gy");
+        }
+        else
+        {
+          if (isPlanSum && Convert.ToString(r.Cells[Column_dvunit.Index].Value) == "%")
+            r.Cells[Column_dvunit.Index].Value = "";
+
+          unit_cell.Items.Remove("Gy");
+
+          dvunit_cell.Items.Remove("cc");
+          if (isPlanSum) dvunit_cell.Items.Remove("%");
         }
 
         r.Cells[Column_result.Index].Value = CaluculateDVH(r);
@@ -681,7 +756,7 @@ namespace DVHAnalyzer
               else if (j == 1)
               {
                 String parameter = String.Format("{0}{1}{2}",
-                 dataGridView1[j, i].Value, dataGridView1[j + 1, i].Value, dataGridView1[j + 2, i].Value);
+                  dataGridView1[j, i].Value, dataGridView1[j + 1, i].Value, dataGridView1[j + 2, i].Value);
                 strList.Add(parameter);
               }
             }
