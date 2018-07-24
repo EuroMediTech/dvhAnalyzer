@@ -46,7 +46,18 @@ namespace VMS.TPS
           List<String> psumList = new List<String>();
           foreach (var sum in context.PlanSumsInScope)
           {
-            psumList.Add(String.Format("{0}/{1}", sum.Course.Id, sum.Id));
+            foreach (var course in context.Patient.Courses)
+            {
+              if (course.PlanSums.FirstOrDefault(ps => ps.Id == sum.Id) != null)
+              {
+                if (sum.Equals(course.PlanSums.First(ps => ps.Id == sum.Id)))
+                {
+                  psumList.Add(String.Format("{0}/{1}", course.Id, sum.Id));
+                }
+              }
+            }
+            // v13以降はforeach (var course ~)の代わりにこれだけでいける
+            // psumList.Add(String.Format("{0}/{1}", sum.Course.Id, sum.Id));
           }
           psumName = Form5.ShowMiniForm(psumList);
           structureSet = context.Patient.Courses.First(c => c.Id == psumName.Split('/')[0]).PlanSums.First(ps => ps.Id == psumName.Split('/')[1]).StructureSet;
@@ -54,7 +65,18 @@ namespace VMS.TPS
         else
         {
           structureSet = psum.StructureSet;
-          psumName = psum.Course.Id + '/' + psum.Id;
+          foreach (var course in context.Patient.Courses)
+          {
+            if (course.PlanSums.FirstOrDefault(ps => ps.Id == psum.Id) != null)
+            {
+              if (psum.Equals(course.PlanSums.First(ps => ps.Id == psum.Id)))
+              {
+                psumName = course.Id + '/' + psum.Id;
+              }
+            }
+          }
+          // v13以降は foreach(var course ~)の代わりにこれでいける
+          // psumName = psum.Course.Id + '/' + psum.Id;
         }
       }
 
