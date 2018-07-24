@@ -40,8 +40,22 @@ namespace VMS.TPS
           throw new ApplicationException("Please open a calculated plansum before using this script.");
 
         isPlanSum = true;
-        structureSet = psum.StructureSet;
-        psumName = psum.Course.ToString() + '/' + psum.Id;
+
+        if (context.PlanSumsInScope.Count() > 1)
+        {
+          List<String> psumList = new List<String>();
+          foreach (var sum in context.PlanSumsInScope)
+          {
+            psumList.Add(String.Format("{0}/{1}", sum.Course.Id, sum.Id));
+          }
+          psumName = Form5.ShowMiniForm(psumList);
+          structureSet = context.Patient.Courses.First(c => c.Id == psumName.Split('/')[0]).PlanSums.First(ps => ps.Id == psumName.Split('/')[1]).StructureSet;
+        }
+        else
+        {
+          structureSet = psum.StructureSet;
+          psumName = psum.Course.Id + '/' + psum.Id;
+        }
       }
 
       // Retrieve StructureSet
@@ -56,7 +70,7 @@ namespace VMS.TPS
       }
       else
       {
-        window = new Form1(context, true, psumName); 
+        window = new Form1(context, true, psumName);
       }
       window.ShowDialog();
     }
