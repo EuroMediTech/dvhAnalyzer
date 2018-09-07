@@ -715,8 +715,8 @@ namespace DVHAnalyzer
 
     private void SaveResults(String filename)
     {
-      Encoding sjis = Encoding.GetEncoding("Shift-JIS");
-      using(StreamWriter writer = new StreamWriter(filename, false, sjis))
+      Encoding utf8 = Encoding.GetEncoding("utf-8");
+      using(StreamWriter writer = new StreamWriter(filename, false, utf8))
       {
         int rowCount = dataGridView1.Rows.Count;
 
