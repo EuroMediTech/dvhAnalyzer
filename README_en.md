@@ -7,6 +7,12 @@ Plugin for Eclipse (Varian Medical Systems) to analyze DVH
 See below.
 ![操作方法](img/Movie.gif)
 
+You can retrieve DVH parameters and judge whether the value meet the criteria with certain tolerance.
+The parameters of "CV/DC" are for evaluating low dose region, defined at [AAPM TG-263](https://www.aapm.org/pubs/reports/RPT_263_Supplemental/default.asp).
+
+Ex1) CV10Gy[cc]: Absolute volume below 10 Gy of selected structure  
+Ex2) DC0.1cc[Gy]: Maximum dose of coolest 0.1 cc of selected structure
+
 ## How to build
 
 You can build this plungin using `DVHAnalyzer.csproj`.
@@ -14,7 +20,7 @@ You can build this plungin using `DVHAnalyzer.csproj`.
 1. Find MSBuild.exe  
 You should find MSBuild.exe in your Eclipse Workstation.
 Normally, it exists in `C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe`. 
-(v4.0.30319 will be differ from environment.)
+(v4.0.30319 will be different from environment.)
 
 2. Download this repository 
 Select "Clone or Download" and "Download ZIP" to save this repository for your local system.  
