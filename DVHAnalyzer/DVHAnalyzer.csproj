@@ -56,6 +56,7 @@
       <HintPath Condition="Exists('C:\Program Files (x86)\Varian\Vision\13.6')">C:\Program Files (x86)\Varian\Vision\13.6\Bin64\VMS.TPS.Common.Model.API.dll</HintPath>
       <HintPath Condition="Exists('C:\Program Files (x86)\Varian\Vision\11.0')">C:\Program Files (x86)\Varian\Vision\11.0\Bin64\VMS.TPS.Common.Model.API.dll</HintPath>
       <Private>False</Private>
+      <HintPath>C:\Program Files\Varian\RTM\15.6\esapi\API\VMS.TPS.Common.Model.API.dll</HintPath>
     </Reference>
     <Reference Include="VMS.TPS.Common.Model.Types">
       <HintPath Condition="Exists('C:\Program Files (x86)\Varian\Vision\13.7')">C:\Program Files (x86)\Varian\Vision\13.7\Bin64\VMS.TPS.Common.Model.Types.dll</HintPath>
@@ -64,6 +65,7 @@
       <HintPath Condition="Exists('C:\Program Files (x86)\Varian\Vision\13.6')">C:\Program Files (x86)\Varian\Vision\13.6\Bin64\VMS.TPS.Common.Model.Types.dll</HintPath>
       <HintPath Condition="Exists('C:\Program Files (x86)\Varian\Vision\11.0')">C:\Program Files (x86)\Varian\Vision\11.0\Bin64\VMS.TPS.Common.Model.Types.dll</HintPath>
       <Private>False</Private>
+      <HintPath>C:\Program Files\Varian\RTM\15.6\esapi\API\VMS.TPS.Common.Model.Types.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
