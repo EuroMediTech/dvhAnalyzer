@@ -17,6 +17,12 @@ CV/DCは
 Ex1) CV10Gy[cc]: 当該Structureの10Gy以下の体積を絶対値で示します。  
 Ex2) DC0.1cc[Gy]: 当該Structureの最も線量の低い0.1 ccのうちの最大線量を示します。
 
+
+### 印刷機能
+
+`Print`ボタンより、DVH解析結果の印刷が可能です。
+(壽賀正城による実装)
+
 ### その他の機能
 
 一度作成したDVH項目はTemplateとして保存可能です。
@@ -32,7 +38,6 @@ Visual Studioを利用するか、あるいはコマンドラインベースで 
 1. MSBuild.exeを探す  
 お使いのEclipse端末から、MSBuild.exeというプログラムを探します。  
 通常は、 `C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe` に存在しています。  
-(v4.0.30319はそれぞれの環境で異なる可能性があります。)
 
 2. このリポジトリをダウンロードする  
 画面右上付近にある、Clone or Download という緑色のボタンからDownload ZIPなどを選択し、ローカル環境にダウンロードしてください。  
@@ -72,4 +77,4 @@ Ver. 15以降の場合は、上記で使用している `DVHAnalyzer.csproj` を
 
 ## Special Thanks
 
-遠山尚紀さん、深田恭平さん、藤田幸男さん
+遠山尚紀さん、深田恭平さん、藤田幸男さん、壽賀正城さん
